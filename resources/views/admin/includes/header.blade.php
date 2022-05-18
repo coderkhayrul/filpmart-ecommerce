@@ -25,6 +25,14 @@
     <!-- App Css-->
     <link href="{{ asset('backend') }}/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
+    {{-- Toster Notification --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 </head>
 
 <body>

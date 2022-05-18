@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -15,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('status', 1)->orderby('id','ASC')->get();
+        $users = User::orderby('id','ASC')->get();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -37,7 +42,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
+            'role' => 'required',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->role = $request->role;
+        $user->slug = Str::slug($request->name, '-');
+        $user->password = Hash::make($request->password);
+        $user->address = $request->address;
+        $user->status = 1;
+        $data = $user->save();
+
+        Session::flash('success', 'User created successfully');
+        return redirect()->back();
+
+
+
     }
 
     /**
@@ -48,7 +76,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = User::findOrFail($id);
+        return view('admin.pages.users.show', compact('data'));
     }
 
     /**

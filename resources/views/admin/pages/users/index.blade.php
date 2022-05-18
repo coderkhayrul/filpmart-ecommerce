@@ -45,7 +45,13 @@
                                 <td>{{ $data['email'] }}</td>
                                 <td>{{ $data['phone'] }}</td>
                                 <td>{{ $data['role'] }}</td>
-                                <td>{{ $data['status'] }}</td>
+                                <td>
+                                    @if ($data->status == 1)
+                                    <div class="badge badge-soft-success font-size-12">Active</div>
+                                    @else
+                                    <div class="badge badge-soft-danger font-size-12">Disabled</div>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
@@ -54,7 +60,7 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <a href="#" class="dropdown-item"><i
+                                                <a href="{{ route('user.show',$data['id']) }}" class="dropdown-item"><i
                                                         class="bx bx-show-alt label-icon"></i> Show</a>
                                             </li>
                                             <li>

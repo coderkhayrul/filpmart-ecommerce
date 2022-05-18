@@ -27,39 +27,46 @@
             </div>
             <div class="card-body">
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('user.store') }}" method="POST">
+                        @csrf
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label for="">Full Name</label>
-                                <input class="form-control" type="text">
+                                <label for="name">Full Name</label>
+                                <input class="form-control" type="text" name="name">
                             </div>
                             <div class="col-md-6">
-                                <label for="">Email</label>
-                                <input class="form-control" type="text">
+                                <label for="email">Email</label>
+                                <input class="form-control" type="email" name="email">
                             </div>
                             <div class="col-md-6">
-                                <label for="">Phone</label>
-                                <input class="form-control" type="text">
+                                <label for="phone">Phone</label>
+                                <input class="form-control" type="text" name="phone">
                             </div>
                             <div class="col-md-6">
-                                <label for="">Role</label>
-                                <select class="form-select">
+                                <label for="role">Role</label>
+                                <select class="form-select" name="role">
                                     <option>Select Role</option>
                                     <option value="1">Admin</option>
                                     <option value="2">Subscriber</option>
                                     <option value="3">Staff</option>
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" name="password">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input class="form-control" type="password" name="password_confirmation">
+                            </div>
                             <div class="col-md-12">
-                                <label for="">Address</label>
-                                <textarea class="form-control" name=""></textarea>
+                                <label for="address">Address</label>
+                                <textarea class="form-control" name="address"></textarea>
                             </div>
                             <div class="col-md-2 mt-4">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">
                                     <i class="bx bxs-save font-size-16 align-middle me-2"></i> User Save
                                 </button>
-
-                                {{-- <button class="form-control btn btn-primary" type="submit">User Save</button> --}}
                             </div>
                         </div>
                     </form>

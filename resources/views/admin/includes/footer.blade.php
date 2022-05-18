@@ -28,6 +28,41 @@
 
 <!-- Right bar overlay-->
 {{-- <div class="rightbar-overlay"></div> --}}
+{{-- NOTIFICATION START --}}
+<script>
+    @if (Session::has('success'))
+        toastr.options =
+        {
+        "closeButton" : true,
+        "progressBar" : true
+        }
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+    @if (Session::has('error'))
+        toastr.options =
+        {
+        "closeButton" : true,
+        "progressBar" : true
+        }
+        toastr.error("{{ session('error') }}");
+    @endif
+    @if (Session::has('info'))
+        toastr.options =
+        {
+        "closeButton" : true,
+        "progressBar" : true
+        }
+        toastr.info("{{ session('info') }}");
+    @endif
+    @if (Session::has('warning'))
+        toastr.options =
+        {
+        "closeButton" : true,
+        "progressBar" : true
+        }
+        toastr.warning("{{ session('warning') }}");
+    @endif
+</script>
 
 <!-- JAVASCRIPT -->
 <script src="{{ asset('backend') }}/libs/jquery/jquery.min.js"></script>
@@ -38,6 +73,7 @@
 <script src="{{ asset('backend') }}/libs/feather-icons/feather.min.js"></script>
 <!-- pace js -->
 <script src="{{ asset('backend') }}/libs/pace-js/pace.min.js"></script>
+
 @yield('custom-script')
 <!-- apexcharts -->
 <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
@@ -48,12 +84,10 @@
 </script>
 <!-- dashboard init -->
 <script src="{{ asset('backend') }}/js/pages/dashboard.init.js"></script>
+<!-- Bootstrap Toasts Js -->
+<script src="{{ asset('backend') }}/js/pages/bootstrap-toasts.init.js"></script>
 
 <script src="{{ asset('backend') }}/js/app.js"></script>
-
 </body>
-
-
-<!-- Mirrored from themesbrand.com/minia/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jan 2022 09:08:26 GMT -->
 
 </html>
