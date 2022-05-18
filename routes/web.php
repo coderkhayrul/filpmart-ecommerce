@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,20 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::get('/',[ AdminController::class, 'dashboard' ])->name('admin.dashboard');
+    Route::get('/blank',[ AdminController::class, 'blank' ])->name('admin.blank');
+
+    Route::group(['prefix' => 'user'], function() {
+
+        // USER ROUTE LIST
+        Route::get('/',[ UserController::class, 'index' ])->name('user.index');
+        Route::get('/create',[ UserController::class, 'create' ])->name('user.create');
+        Route::post('/',[ UserController::class, 'store' ])->name('user.store');
+        Route::get('/show/{id}',[ UserController::class, 'show' ])->name('user.show');
+        Route::get('/edit/{id}',[ UserController::class, 'edit' ])->name('user.edit');
+        Route::put('/update/{id}',[ UserController::class, 'update' ])->name('user.update');
+        Route::get('/softdelete/{id}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
+        Route::get('/delete{id}',[ UserController::class, 'destroy' ])->name('user.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';
