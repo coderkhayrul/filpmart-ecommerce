@@ -21,8 +21,8 @@
         <div class="card border border-primary">
             <div class="card-header bg-transparent border-primary d-flex justify-content-between">
                 <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>All Users </h5>
-                <a href="#" class="btn btn-sm btn-primary waves-effect waves-light">
-                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> create
+                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary waves-effect waves-light">
+                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> Create User
                 </a>
             </div>
             <div class="card-body">
@@ -38,8 +38,6 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-
-
                         <tbody>
                             @foreach ($users as $data)
                             <tr>
@@ -50,21 +48,26 @@
                                 <td>{{ $data['status'] }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
-                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
                                             Manage <i class="mdi mdi-chevron-down"></i>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <a href="#" class="dropdown-item"><i class="bx bx-show-alt label-icon"></i> Show</a>
+                                                <a href="#" class="dropdown-item"><i
+                                                        class="bx bx-show-alt label-icon"></i> Show</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="dropdown-item"><i class=" bx bx-edit-alt label-icon"></i> Edit</a>
+                                                <a href="#" class="dropdown-item"><i
+                                                        class=" bx bx-edit-alt label-icon"></i> Edit</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="dropdown-item"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
+                                                <a href="#" class="dropdown-item"><i
+                                                        class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                             </li>
                                             <li class="">
-                                                <a href="#" class="dropdown-item bg-danger text-light"><i class="bx bx-user-x label-icon"></i> Suspend</a>
+                                                <a href="#" class="dropdown-item bg-danger text-light"><i
+                                                        class="bx bx-user-x label-icon"></i> Suspend</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -79,6 +82,7 @@
     </div>
 </div>
 @endsection
+
 @section('custom-css')
 <!-- DataTables -->
 <link href="{{ asset('backend') }}/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -90,6 +94,7 @@
 <link href="{{ asset('backend') }}/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
     rel="stylesheet" type="text/css" />
 @endsection
+
 @section('custom-script')
 <!-- Required datatable js -->
 <script src="{{ asset('backend') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>

@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.users.create');
     }
 
     /**
@@ -86,12 +86,23 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Temporaly Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function softdelete($id)
+    {
+        //
+    }
+
+    /**
+     * Suspend the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function suspend($id)
     {
         //
     }

@@ -22,7 +22,7 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('user.index') }}">All User</a></li>
-                                <li><a href="{{ route('user.index') }}">Add User</a></li>
+                                <li><a href="{{ route('user.create') }}">Add User</a></li>
                             </ul>
                         </li>
 

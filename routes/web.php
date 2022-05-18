@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
         Route::put('/update/{id}',[ UserController::class, 'update' ])->name('user.update');
         Route::get('/softdelete/{id}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
         Route::get('/delete{id}',[ UserController::class, 'destroy' ])->name('user.destroy');
+        Route::get('/delete{id}',[ UserController::class, 'suspend' ])->name('user.suspend');
     });
 });
 
