@@ -32,24 +32,36 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="name">Full Name</label>
-                                <input class="form-control" type="text" name="name">
+                                <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="email">Email</label>
-                                <input class="form-control" type="email" name="email">
+                                <input class="form-control" type="email" name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="phone">Phone</label>
-                                <input class="form-control" type="text" name="phone">
+                                <input class="form-control" type="text" name="phone" value="{{ old('phone') }}">
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="role">Role</label>
                                 <select class="form-select" name="role">
-                                    <option>Select Role</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Subscriber</option>
-                                    <option value="3">Staff</option>
+                                    <option disabled selected>Select Role</option>
+                                    <option value="1" {{ old('role') == '1' ? 'selected' : '' }}>Admin</option>
+                                    <option value="2" {{ old('role') == '2' ? 'selected' : '' }}>Subscriber</option>
+                                    <option value="3" {{ old('role') == '3' ? 'selected' : '' }}>Staff</option>
                                 </select>
+                                @error('role')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="password">Password</label>
