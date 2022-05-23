@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
@@ -17,32 +18,49 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// |---------------------------------------------------------------------|
-// <<=====================>> WEBSITE ROUTE LIST <<=====================>>
-// |---------------------------------------------------------------------|
+/*
+ *|---------------------------------------------------------------------|
+ * <<=====================>> WEBSITE ROUTE LIST <<=====================>>
+ *|---------------------------------------------------------------------|
+ */
+
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
 
-// |---------------------------------------------------------------------|
-// <<=====================>> ADMIN ROUTE LIST <<=====================>>
-// |---------------------------------------------------------------------|
+/*
+ *|---------------------------------------------------------------------|
+ * <<======================>> ADMIN ROUTE LIST <<======================>>
+ *|---------------------------------------------------------------------|
+*/
+Route::get('/blank',[ AdminController::class, 'blank' ])->name('admin.blank');
+
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::get('/',[ AdminController::class, 'dashboard' ])->name('admin.dashboard');
-    Route::get('/blank',[ AdminController::class, 'blank' ])->name('admin.blank');
 
+    // <<===== USER ROUTE LIST ======>>
     Route::group(['prefix' => 'user'], function() {
-
-        // <<===== USER ROUTE LIST ======>>
         Route::get('/',[ UserController::class, 'index' ])->name('user.index');
         Route::get('/create',[ UserController::class, 'create' ])->name('user.create');
         Route::post('/',[ UserController::class, 'store' ])->name('user.store');
-        Route::get('/show/{id}',[ UserController::class, 'show' ])->name('user.show');
-        Route::get('/edit/{id}',[ UserController::class, 'edit' ])->name('user.edit');
-        Route::put('/update/{id}',[ UserController::class, 'update' ])->name('user.update');
-        Route::get('/softdelete/{id}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
-        Route::get('/delete{id}',[ UserController::class, 'destroy' ])->name('user.destroy');
-        Route::get('/delete{id}',[ UserController::class, 'suspend' ])->name('user.suspend');
+        Route::get('/show/{slug}',[ UserController::class, 'show' ])->name('user.show');
+        Route::get('/edit/{slug}',[ UserController::class, 'edit' ])->name('user.edit');
+        Route::put('/update/{slug}',[ UserController::class, 'update' ])->name('user.update');
+        Route::get('/softdelete/{slug}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
+        Route::get('/delete{slug}',[ UserController::class, 'destroy' ])->name('user.destroy');
+        Route::get('/delete{slug}',[ UserController::class, 'suspend' ])->name('user.suspend');
     });
+
+    // <<===== BASIC INFO ROUTE LIST ======>>
+    Route::get('/basic-info',[ ManageController::class, 'basic_index' ])->name('manage.basic.index');
+    Route::post('/basic-info',[ ManageController::class, 'basic_update' ])->name('manage.basic.update');
+
+    // <<===== CONTACT INFO ROUTE LIST ======>>
+    Route::get('/contact-info',[ ManageController::class, 'contact_index' ])->name('manage.contact.index');
+    Route::post('/contact-info',[ ManageController::class, 'contact_update' ])->name('manage.contact.update');
+
+    // <<===== SOCIAL MEDIA ROUTE LIST ======>>
+    Route::get('/social-media',[ ManageController::class, 'social_index' ])->name('manage.social.index');
+    Route::post('/social-media',[ ManageController::class, 'socail_update' ])->name('manage.social.update');
 });
 
 require __DIR__.'/auth.php';

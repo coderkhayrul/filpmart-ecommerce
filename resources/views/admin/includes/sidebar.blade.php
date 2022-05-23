@@ -26,8 +26,18 @@
                             </ul>
                         </li>
 
-                        <li class="menu-title mt-2" data-key="t-components">Elements</li>
-
+                        <li class="menu-title mt-2" data-key="t-components">Advance Manage</li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="settings"></i>
+                                <span data-key="t-authentication">Settings</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('manage.basic.index') }}">Basic Information</a></li>
+                                <li><a href="{{ route('manage.contact.index') }}">Contact Information</a></li>
+                                <li><a href="{{ route('manage.social.index') }}">Social Media</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="{{ route('admin.blank') }}">
                                 <i class="bx bx-file-blank"></i>

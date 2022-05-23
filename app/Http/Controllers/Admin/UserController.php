@@ -50,22 +50,24 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->role = $request->role;
-        $user->slug = Str::slug($request->name, '-');
-        $user->password = Hash::make($request->password);
-        $user->address = $request->address;
-        $user->status = 1;
-        $data = $user->save();
+        $user = User::insertGetId([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role' => $request->role,
+            'slug' => Str::slug($request->name, '-'),
+            'password' => Hash::make($request->password),
+            'address' => $request->address,
+            'status' => 1
+        ]);
 
-        Session::flash('success', 'User created successfully');
-        return redirect()->back();
-
-
-
+        if($user){
+            Session::flash('success', 'User created successfully');
+            return redirect()->back();
+        }else{
+            Session::flash('error', 'User created Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -86,9 +88,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data = User::where('status', 1)->where('slug', $slug)->firstOrFail();
+        return view('admin.pages.users.edit', compact('data'));
     }
 
     /**
