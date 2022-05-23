@@ -60,11 +60,11 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <a href="{{ route('user.show',$data['id']) }}" class="dropdown-item"><i
+                                                <a href="{{ route('user.show',$data['slug']) }}" class="dropdown-item"><i
                                                         class="bx bx-show-alt label-icon"></i> Show</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="dropdown-item"><i
+                                                <a href="{{ route('user.edit',$data['slug']) }}" class="dropdown-item"><i
                                                         class=" bx bx-edit-alt label-icon"></i> Edit</a>
                                             </li>
                                             <li>
