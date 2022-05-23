@@ -29,6 +29,7 @@
                 <div class="card-body">
                     <form action="{{ route('manage.basic.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input class="form-control" type="hidden" name="basic_id" value="{{ $data['basic_id'] }}">
                         <div class="row form-group">
                             <div class="col-md-6 ">
                                 <label for="name">Company Name</label>
