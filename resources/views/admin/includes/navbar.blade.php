@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <!--  Language -->
-                <div class="dropdown d-none d-sm-inline-block">
+                {{-- <div class="dropdown d-none d-sm-inline-block">
                     <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <img id="header-lang-img" src="{{ asset('backend') }}/images/flags/us.jpg" alt="Header Language"
@@ -104,7 +104,7 @@
                             <span class="align-middle">Russian</span>
                         </a>
                     </div>
-                </div>
+                </div> --}}
                 <!--  Theme Dark and Light -->
                 <div class="dropdown d-none d-sm-inline-block">
                     <button type="button" class="btn header-item" id="mode-setting-btn">

@@ -96,8 +96,6 @@
                                         @else
                                             <img id="favicon" style="width:50px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo"/>
                                         @endif
-
-                                        {{-- <img class="rounded" id="favicon" style="width:100px;" src="{{ asset('backend/default/no_image.png') }}" alt="company Favicon"> --}}
                                     </div>
                                 </div>
                             </div>

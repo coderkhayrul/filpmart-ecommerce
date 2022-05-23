@@ -24,7 +24,7 @@ class CreateSocialMediaTable extends Migration
             $table->text('sm_instagram')->nullable();
             $table->text('sm_behance')->nullable();
             $table->text('sm_google')->nullable();
-            $table->text('sm_raddit')->nullable();
+            $table->text('sm_reddit')->nullable();
             $table->integer('sm_status')->default(1);
             $table->timestamps();
         });

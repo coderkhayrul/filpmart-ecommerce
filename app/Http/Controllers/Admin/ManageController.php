@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BasicInfo;
+use App\Models\ContactInfo;
+use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -68,19 +70,59 @@ class ManageController extends Controller
 
     // Contact Info
     public function contact_index(){
-        return view('admin.settings.contact_info');
+        $data = ContactInfo::where('contact_id', 1)->where('contact_status', 1)->firstOrFail();
+        return view('admin.settings.contact_info', compact('data'));
     }
 
-    public function contact_update(){
+    public function contact_update(Request $request){
 
+        $contactInfo = ContactInfo::where('contact_id', 1)->update([
+            'contact_phone_one' => $request->contact_phone_one,
+            'contact_phone_two' => $request->contact_phone_two,
+            'contact_email_one' => $request->contact_email_one,
+            'contact_email_two' => $request->contact_email_two,
+            'contact_address_one' => $request->contact_address_one,
+            'contact_address_two' => $request->contact_address_two,
+            'contact_status' => 1,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        if ($contactInfo) {
+            Session::flash('success', 'Contact Information Update successfully');
+        } else {
+            Session::flash('error', 'Contact Information Update Failed!');
+        }
+        return redirect()->back();
     }
 
     // Social Media
     public function social_index(){
-        return view('admin.settings.social_media');
+        $data = SocialMedia::where('sm_id', 1)->where('sm_status', 1)->firstOrFail();
+        return view('admin.settings.social_media', compact('data'));
     }
 
-    public function socail_update(){
+    public function socail_update(Request $request){
+        $social_medial = SocialMedia::where('sm_id', 1)->update([
+            'sm_facebook' => $request->sm_facebook,
+            'sm_twitter' => $request->sm_twitter,
+            'sm_linkedin' => $request->sm_linkedin,
+            'sm_dribbble' => $request->sm_dribbble,
+            'sm_youtube' => $request->sm_youtube,
+            'sm_slack' => $request->sm_slack,
+            'sm_instagram' => $request->sm_instagram,
+            'sm_behance' => $request->sm_behance,
+            'sm_google' => $request->sm_google,
+            'sm_reddit' => $request->sm_reddit,
+            'sm_status' => 1,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
 
+        if ($social_medial) {
+            Session::flash('success', 'Socail Media Update successfully');
+        } else {
+            Session::flash('error', 'Socail Media Update Failed!');
+        }
+
+        return redirect()->back();
     }
 }
