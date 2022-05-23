@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// |---------------------------------------------------------------------|
+// <<=====================>> WEBSITE ROUTE LIST <<=====================>>
+// |---------------------------------------------------------------------|
+Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
 
+// |---------------------------------------------------------------------|
+// <<=====================>> ADMIN ROUTE LIST <<=====================>>
+// |---------------------------------------------------------------------|
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::get('/',[ AdminController::class, 'dashboard' ])->name('admin.dashboard');
@@ -30,7 +32,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
     Route::group(['prefix' => 'user'], function() {
 
-        // USER ROUTE LIST
+        // <<===== USER ROUTE LIST ======>>
         Route::get('/',[ UserController::class, 'index' ])->name('user.index');
         Route::get('/create',[ UserController::class, 'create' ])->name('user.create');
         Route::post('/',[ UserController::class, 'store' ])->name('user.store');
