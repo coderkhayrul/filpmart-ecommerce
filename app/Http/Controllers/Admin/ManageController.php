@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BasicInfo;
 use Illuminate\Http\Request;
 
 class ManageController extends Controller
 {
     // Basic Info
     public function basic_index(){
-        return view('admin.settings.basic_info');
+        $data = BasicInfo::where('basic_id', 1)->firstOrFail();
+        return view('admin.settings.basic_info', compact('data'));
     }
 
-    public function basic_update(){
+    public function basic_update(Request $request){
+
+        dd($request->all());
 
     }
 

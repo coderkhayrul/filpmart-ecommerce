@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BasicInfo;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,15 @@ class DatabaseSeeder extends Seeder
             'role' => 1,
             'slug' => 'u-admin',
             'password' => Hash::make('password')
+        ]);
+
+        BasicInfo::create([
+            'basic_company' => 'Flipmart',
+            'basic_title' => 'Flipmart Ecommarce Store',
+            'basic_header_logo' => '',
+            'basic_footer_logo' => '',
+            'basic_favicon' => '',
+            'basic_status' => 1
         ]);
     }
 }
