@@ -33,7 +33,7 @@ class ManageController extends Controller
         // Basic Footer Logo
         if ($request->hasFile('basic_footer_logo')) {
             $footer_logo = $request->file('basic_footer_logo');
-            $footerName = time() . '_' . rand(100000, 10000000) . '.' . $header_logo->getClientOriginalExtension();
+            $footerName = time() . '_' . rand(100000, 10000000) . '.' . $footer_logo->getClientOriginalExtension();
             Image::make($footer_logo)->resize(140, 40)->save('backend/uploads/setting/' . $footerName);
         } else {
             $footerName = $data->basic_footer_logo;
@@ -42,7 +42,7 @@ class ManageController extends Controller
         // Basic Favicon Logo
         if ($request->hasFile('basic_favicon')) {
             $favicon_logo = $request->file('basic_favicon');
-            $faviconName = time() . '_' . rand(100000, 10000000) . '.' . $header_logo->getClientOriginalExtension();
+            $faviconName = time() . '_' . rand(100000, 10000000) . '.' . $favicon_logo->getClientOriginalExtension();
             Image::make($favicon_logo)->resize(48, 48)->save('backend/uploads/setting/' . $faviconName);
         } else {
             $faviconName = $data->basic_favicon;

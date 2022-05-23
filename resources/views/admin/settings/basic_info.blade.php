@@ -54,8 +54,12 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-2">
-                                        <img id="header_logo" style="width:100px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo">
+                                    <div class="col-md-2 m-auto">
+                                        @if ($data['basic_header_logo'])
+                                            <img id="header_logo" style="width:100px" src="{{ asset('backend/uploads/setting/'.$data['basic_header_logo']) }}" alt="company logo">
+                                        @else
+                                            <img id="header_logo" style="width:100px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo"/>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +72,12 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-2">
-                                        <img id="footer_logo" style="width:100px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo">
+                                    <div class="col-md-2 m-auto">
+                                        @if ($data['basic_footer_logo'])
+                                            <img id="footer_logo" style="width:100px" src="{{ asset('backend/uploads/setting/'.$data['basic_footer_logo']) }}" alt="company logo">
+                                        @else
+                                            <img id="footer_logo" style="width:100px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo"/>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +90,14 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-md-2">
-                                        <img class="rounded" id="favicon" style="width:100px;" src="{{ asset('backend/default/no_image.png') }}" alt="company Favicon">
+                                    <div class="col-md-2 m-auto">
+                                        @if ($data['basic_favicon'])
+                                            <img id="favicon" style="width:50px" src="{{ asset('backend/uploads/setting/'.$data['basic_favicon']) }}" alt="company logo">
+                                        @else
+                                            <img id="favicon" style="width:50px" src="{{ asset('backend/default/no_image.png') }}" alt="company logo"/>
+                                        @endif
+
+                                        {{-- <img class="rounded" id="favicon" style="width:100px;" src="{{ asset('backend/default/no_image.png') }}" alt="company Favicon"> --}}
                                     </div>
                                 </div>
                             </div>
