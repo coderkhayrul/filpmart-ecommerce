@@ -61,10 +61,11 @@ class ManageController extends Controller
 
         if ($basicInfo) {
             Session::flash('success', 'Basic Information Update successfully');
+            return redirect()->back();
         } else {
             Session::flash('error', 'Basic Information Update Failed!');
+            return redirect()->back();
         }
-        return redirect()->back();
 
     }
 
