@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderby('id','ASC')->get();
+        $users = User::where('status', 1)->orderby('id','ASC')->get();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -126,7 +126,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
     }
@@ -137,9 +137,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function softdelete($id)
+    public function softdelete(Request $request, $slug)
     {
-        //
+        $data = User::where('slug', $slug)->firstOrFail();
+        $data->status = 0;
+        $data->update();
+
+        if($data){
+            Session::flash('success', 'User Delete successfully');
+            return redirect()->back();
+        }else{
+            Session::flash('error', 'User Delete Failed!');
+            return redirect()->back();
+        }
+
+
     }
 
     /**
@@ -148,7 +160,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function suspend($id)
+    public function suspend($slug)
     {
         //
     }

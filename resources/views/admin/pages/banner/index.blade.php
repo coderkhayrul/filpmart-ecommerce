@@ -4,12 +4,12 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Users</h4>
+            <h4 class="mb-sm-0 font-size-18">Banner</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">User</a></li>
-                    <li class="breadcrumb-item active">All User</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Banner</a></li>
+                    <li class="breadcrumb-item active">All Banner</li>
                 </ol>
             </div>
 
@@ -20,9 +20,9 @@
     <div class="col-md-12">
         <div class="card border border-primary">
             <div class="card-header bg-transparent border-primary d-flex justify-content-between">
-                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>All Users </h5>
-                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary waves-effect waves-light">
-                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> Create User
+                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>All Banner </h5>
+                <a href="{{ route('banner.create') }}" class="btn btn-sm btn-primary waves-effect waves-light">
+                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> Create Banner
                 </a>
             </div>
             <div class="card-body">
@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $data)
+                            @foreach ($banners as $data)
                             <tr>
                                 <td>{{ $data['name'] }}</td>
                                 <td>{{ $data['email'] }}</td>

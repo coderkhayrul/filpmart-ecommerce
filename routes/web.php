@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Website\WebsiteController;
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
         Route::put('/update/{slug}',[ UserController::class, 'update' ])->name('user.update');
         Route::get('/softdelete/{slug}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
         Route::get('/delete/{slug}',[ UserController::class, 'destroy' ])->name('user.destroy');
-        Route::get('/delete/{slug}',[ UserController::class, 'suspend' ])->name('user.suspend');
+        Route::get('/suspend/{slug}',[ UserController::class, 'suspend' ])->name('user.suspend');
     });
 
     // <<===== BASIC INFO ROUTE LIST ======>>
@@ -61,6 +62,19 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     // <<===== SOCIAL MEDIA ROUTE LIST ======>>
     Route::get('/social-media',[ ManageController::class, 'social_index' ])->name('manage.social.index');
     Route::post('/social-media',[ ManageController::class, 'socail_update' ])->name('manage.social.update');
+
+    // <<===== BANNER ROUTE LIST ======>>
+    Route::group(['prefix' => 'banner'], function() {
+        Route::get('/',[ BannerController::class, 'index' ])->name('banner.index');
+        Route::get('/create',[ BannerController::class, 'create' ])->name('banner.create');
+        Route::post('/',[ BannerController::class, 'store' ])->name('banner.store');
+        Route::get('/show/{slug}',[ BannerController::class, 'show' ])->name('banner.show');
+        Route::get('/edit/{slug}',[ BannerController::class, 'edit' ])->name('banner.edit');
+        Route::put('/update/{slug}',[ BannerController::class, 'update' ])->name('banner.update');
+        Route::get('/softdelete/{slug}',[ BannerController::class, 'softdelete' ])->name('banner.softdelete');
+        Route::get('/delete/{slug}',[ BannerController::class, 'destroy' ])->name('banner.destroy');
+    });
+
 });
 
 require __DIR__.'/auth.php';

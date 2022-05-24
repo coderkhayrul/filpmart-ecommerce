@@ -29,8 +29,19 @@
                         <li class="menu-title mt-2" data-key="t-components">Advance Manage</li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="image"></i>
+                                <span data-key="t-banners">Banner</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('banner.index') }}">All Banner</a></li>
+                                <li><a href="{{ route('banner.create') }}">Add Banner</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
                                 <i data-feather="settings"></i>
-                                <span data-key="t-authentication">Settings</span>
+                                <span data-key="t-settings">Settings</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('manage.basic.index') }}">Basic Information</a></li>
