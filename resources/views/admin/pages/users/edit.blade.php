@@ -27,8 +27,9 @@
             </div>
             <div class="card-body">
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('user.update',$data->slug) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="name">Full Name</label>

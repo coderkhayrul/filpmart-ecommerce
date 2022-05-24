@@ -76,9 +76,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $data = User::findOrFail($id);
+        $data = User::where('slug',$slug)->firstOrFail();
         return view('admin.pages.users.show', compact('data'));
     }
 
@@ -101,9 +101,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $data = User::where('status', 1)->where('slug' ,$slug)->firstOrFail();
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->role = $request->role;
+        $data->address = $request->address;
+        $data->update();
+
+        if($data){
+            Session::flash('success', 'User Update successfully');
+            return redirect()->back();
+        }else{
+            Session::flash('error', 'User Update Failed!');
+            return redirect()->back();
+        }
     }
 
     /**

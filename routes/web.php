@@ -46,8 +46,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
         Route::get('/edit/{slug}',[ UserController::class, 'edit' ])->name('user.edit');
         Route::put('/update/{slug}',[ UserController::class, 'update' ])->name('user.update');
         Route::get('/softdelete/{slug}',[ UserController::class, 'softdelete' ])->name('user.softdelete');
-        Route::get('/delete{slug}',[ UserController::class, 'destroy' ])->name('user.destroy');
-        Route::get('/delete{slug}',[ UserController::class, 'suspend' ])->name('user.suspend');
+        Route::get('/delete/{slug}',[ UserController::class, 'destroy' ])->name('user.destroy');
+        Route::get('/delete/{slug}',[ UserController::class, 'suspend' ])->name('user.suspend');
     });
 
     // <<===== BASIC INFO ROUTE LIST ======>>
