@@ -30,10 +30,11 @@
                     <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Role</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Middle Title</th>
+                                <th>Sub Title</th>
+                                <th>Button Title</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -41,12 +42,17 @@
                         <tbody>
                             @foreach ($banners as $data)
                             <tr>
-                                <td>{{ $data['name'] }}</td>
-                                <td>{{ $data['email'] }}</td>
-                                <td>{{ $data['phone'] }}</td>
-                                <td>{{ $data['role'] }}</td>
                                 <td>
-                                    @if ($data->status == 1)
+                                    <img id="header_logo" style="width:100px"
+                                        src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}"
+                                        alt="Banner Image">
+                                </td>
+                                <td>{{ $data['banner_title'] }}</td>
+                                <td>{{ $data['banner_mid_title'] }}</td>
+                                <td>{{ $data['banner_subtitle'] }}</td>
+                                <td>{{ $data['banner_button'] }}</td>
+                                <td>
+                                    @if ($data->banner_status == 1)
                                     <div class="badge badge-soft-success font-size-12">Active</div>
                                     @else
                                     <div class="badge badge-soft-danger font-size-12">Disabled</div>
@@ -60,25 +66,79 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <a href="{{ route('user.show',$data['slug']) }}" class="dropdown-item"><i
-                                                        class="bx bx-show-alt label-icon"></i> Show</a>
+                                                <button class="dropdown-item" style="width: 100%" type="button"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#bannerShow{{ $data['banner_id'] }}"><i
+                                                        class="bx bx-show-alt label-icon"></i> Show</button>
                                             </li>
                                             <li>
-                                                <a href="{{ route('user.edit',$data['slug']) }}" class="dropdown-item"><i
-                                                        class=" bx bx-edit-alt label-icon"></i> Edit</a>
+                                                <a href="{{ route('banner.edit',$data['banner_slug']) }}"
+                                                    class="dropdown-item"><i class=" bx bx-edit-alt label-icon"></i>
+                                                    Edit</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('user.softdelete',$data['slug']) }}" class="dropdown-item"><i
-                                                        class=" bx bxs-trash-alt label-icon"></i> Delete</a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#" class="dropdown-item bg-danger text-light"><i
-                                                        class="bx bx-user-x label-icon"></i> Suspend</a>
+                                                <a href="{{ route('banner.softdelete',$data['banner_slug']) }}"
+                                                    class="dropdown-item"><i class=" bx bxs-trash-alt label-icon"></i>
+                                                    Delete</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
+
+                            {{-- Show Modal --}}
+                            <div id="bannerShow{{ $data['banner_id'] }}" class="modal fade" tabindex="-1"
+                                aria-labelledby="myModalLabel" data-bs-scroll="true" aria-hidden="true"
+                                style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary">
+                                            <h5 class="modal-title text-light" id="myModalLabel">Banner Show</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body m-auto">
+                                            <div class="row form-group">
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_title">Banner Title</label>
+                                                    <input disabled class="form-control" type="text" name="banner_title" value="{{ $data['banner_title'] }}">
+                                                </div>
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_mid_title">Banner Middle Title</label>
+                                                    <input disabled class="form-control" type="text" name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
+                                                </div>
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_subtitle">Banner Sub Title</label>
+                                                    <input disabled class="form-control" type="text" name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
+                                                </div>
+
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_button">Banner Button Name</label>
+                                                    <input disabled class="form-control" type="text" name="banner_button" value="{{ $data['banner_button'] }}">
+                                                </div>
+
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_url">Banner Url</label>
+                                                    <input disabled class="form-control" type="text" name="banner_url" value="{{ $data['banner_url'] }}">
+                                                </div>
+
+                                                <div class="col-md-6 my-2">
+                                                    <label for="banner_order">Banner Order</label>
+                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                </div>
+
+                                                <div class="col-md-12 my-2 d-flex">
+                                                    <img style="width: 200px" class="m-auto" src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}" alt="Banner Image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary waves-effect"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
                             @endforeach
                         </tbody>
                     </table>
