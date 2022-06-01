@@ -41,6 +41,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->all();
         $this->validate($request,[
             'banner_title' => 'required',
             'banner_mid_title' => 'required',

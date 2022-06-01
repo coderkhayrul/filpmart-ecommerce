@@ -25,6 +25,18 @@
                                 <li><a href="{{ route('user.create') }}">Add User</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="package"></i>
+                                <span data-key="t-authentication">Products</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#">Add New Product</a></li>
+                                <li><a href="#">All Product</a></li>
+                                <li><a href="#">Category</a></li>
+                                <li><a href="{{ route('brand.index') }}">Brand</a></li>
+                            </ul>
+                        </li>
 
                         <li class="menu-title mt-2" data-key="t-components">Advance Manage</li>
                         <li>
