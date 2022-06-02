@@ -33,7 +33,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="#">Add New Product</a></li>
                                 <li><a href="#">All Product</a></li>
-                                <li><a href="#">Category</a></li>
+                                <li><a href="{{ route('category.index') }}">Category</a></li>
                                 <li><a href="{{ route('brand.index') }}">Brand</a></li>
                             </ul>
                         </li>

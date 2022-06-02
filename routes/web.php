@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Website\WebsiteController;
@@ -87,7 +88,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::get('/softdelete/{slug}',[ ProductController::class, 'softdelete' ])->name('product.softdelete');
             Route::get('/delete/{slug}',[ ProductController::class, 'destroy' ])->name('product.destroy');
 
-    // <<===== BRAND ROUTE LIST ======>>
+        // <<===== BRAND ROUTE LIST ======>>
         Route::group(['prefix' => 'brand'], function() {
             Route::get('/',[ BrandController::class, 'index' ])->name('brand.index');
             Route::get('/create',[ BrandController::class, 'create' ])->name('brand.create');
@@ -97,6 +98,18 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::put('/update/{slug}',[ BrandController::class, 'update' ])->name('brand.update');
             Route::get('/softdelete/{slug}',[ BrandController::class, 'softdelete' ])->name('brand.softdelete');
             Route::get('/delete/{slug}',[ BrandController::class, 'destroy' ])->name('brand.destroy');
+        });
+
+        // <<===== CATEGORY ROUTE LIST ======>>
+        Route::group(['prefix' => 'category'], function() {
+            Route::get('/',[ CategoryController::class, 'index' ])->name('category.index');
+            Route::get('/create',[ CategoryController::class, 'create' ])->name('category.create');
+            Route::post('/',[ CategoryController::class, 'store' ])->name('category.store');
+            Route::get('/show/{slug}',[ CategoryController::class, 'show' ])->name('category.show');
+            Route::get('/edit/{slug}',[ CategoryController::class, 'edit' ])->name('category.edit');
+            Route::put('/update/{slug}',[ CategoryController::class, 'update' ])->name('category.update');
+            Route::get('/softdelete/{slug}',[ CategoryController::class, 'softdelete' ])->name('category.softdelete');
+            Route::get('/delete/{slug}',[ CategoryController::class, 'destroy' ])->name('category.destroy');
         });
     });
 
