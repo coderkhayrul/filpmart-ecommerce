@@ -93,38 +93,31 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body m-auto">
+                                        <div class="modal-body">
                                             <div class="row form-group">
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_title">Banner Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_title" value="{{ $data['banner_title'] }}">
+                                                    <label for="pro_cat_name">Category Name</label>
+                                                    <input disabled class="form-control" type="text" name="pro_cat_name" value="{{ $data['pro_cat_name'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_mid_title">Banner Middle Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
+                                                    <label for="pro_cat_parent">Parent Category</label>
+                                                    <input disabled class="form-control" type="text" name="pro_cat_parent" value="{{ $data['pro_cat_parent'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_subtitle">Banner Sub Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
+                                                    <label for="pro_cat_order">Order Level</label>
+                                                    <input disabled class="form-control" type="text" name="pro_cat_order" value="{{ $data['pro_cat_order'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_button">Banner Button Name</label>
-                                                    <input disabled class="form-control" type="text" name="banner_button" value="{{ $data['banner_button'] }}">
-                                                </div>
 
+                                                </div>
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_url">Banner Url</label>
-                                                    <input disabled class="form-control" type="text" name="banner_url" value="{{ $data['banner_url'] }}">
+                                                    <label for="pro_cat_image">Category Image</label>
+                                                    <img style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/'.$data['pro_cat_image']) }}" alt="Category Image">
                                                 </div>
-
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_order">Banner Order</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
-                                                </div>
-
-                                                <div class="col-md-12 my-2 d-flex">
-                                                    <img style="width: 200px" class="m-auto" src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}" alt="Banner Image">
+                                                        <label for="pro_cat_icon">Category Icon</label>
+                                                        <img style="width: 50px" class="m-auto" src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}" alt="Category Icon">
                                                 </div>
                                             </div>
                                         </div>
