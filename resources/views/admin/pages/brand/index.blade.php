@@ -37,8 +37,8 @@
                             @foreach ($brands as $data)
                             <tr>
                                 <td>{{ $data['brand_name'] }}</td>
-                                <td>
-                                    <img style="width:100px"
+                                <td class="text-center">
+                                    <img style="width:50px"
                                         src="{{ asset('backend/uploads/brand/'.$data['brand_image']) }}"
                                         alt="Banner Image">
                                 </td>
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <a href="{{ route('brand.destroy',$data['brand_slug']) }}" class="btn btn-primary">Delete</a>
+                                            <a href="{{ route('brand.softdelete',$data['brand_slug']) }}" class="btn btn-primary">Delete</a>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
@@ -95,6 +95,7 @@
         </div>
     </div>
 
+    {{-- Brand Create --}}
     <div class="col-md-4">
         <div class="card border border-primary">
             <div class="card-header bg-transparent border-primary d-flex justify-content-between">
@@ -104,7 +105,6 @@
                 <div class="card-body">
                     <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
                         <div class="col-md-12 my-2">
                             <label for="brand_name">Name</label>
                             <input class="form-control" type="text" name="brand_name" value="{{ old('brand_name') }}">
