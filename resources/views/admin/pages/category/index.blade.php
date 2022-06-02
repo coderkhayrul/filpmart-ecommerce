@@ -43,8 +43,8 @@
                             <tr>
                                 <td class="text-center">
                                         <img id="category_icon" style="width:50px"
-                                        src="{{ asset('backend/uploads/category/icons'.$data['pro_cat_icon']) }}"
-                                        alt="Category_Banner icon">
+                                        src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}"
+                                        alt="Category Icon">
                                 </td>
                                 <td class="text-center">
                                     <img id="category_image" style="width:50px"

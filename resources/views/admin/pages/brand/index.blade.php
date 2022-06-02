@@ -35,14 +35,14 @@
                         </thead>
                         <tbody>
                             @foreach ($brands as $data)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{ $data['brand_name'] }}</td>
-                                <td class="text-center">
+                                <td>
                                     <img style="width:50px"
                                         src="{{ asset('backend/uploads/brand/'.$data['brand_image']) }}"
                                         alt="Banner Image">
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     @if ($data->brand_feature == 1)
                                     <div class="badge badge-soft-success font-size-12">Active</div>
                                     @else
@@ -51,7 +51,7 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
-                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             Manage <i class="mdi mdi-chevron-down"></i>
                                         </button>
