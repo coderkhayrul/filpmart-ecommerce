@@ -4,12 +4,12 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Banner</h4>
+            <h4 class="mb-sm-0 font-size-18">Partner</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Banner</a></li>
-                    <li class="breadcrumb-item active">All Banner</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Partner</a></li>
+                    <li class="breadcrumb-item active">All Partner</li>
                 </ol>
             </div>
 
@@ -20,9 +20,9 @@
     <div class="col-md-12">
         <div class="card border border-primary">
             <div class="card-header bg-transparent border-primary d-flex justify-content-between">
-                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>All Category </h5>
-                <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary waves-effect waves-light">
-                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> Create Category
+                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>All Partner </h5>
+                <a href="{{ route('partner.create') }}" class="btn btn-sm btn-primary waves-effect waves-light">
+                    <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> Create Partner
                 </a>
             </div>
             <div class="card-body">
@@ -62,12 +62,6 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <button class="dropdown-item" style="width: 100%" type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#partnerShow{{ $data['partner_id'] }}"><i
-                                                        class="bx bx-show-alt label-icon"></i> Show</button>
-                                            </li>
-                                            <li>
                                                 <a href="{{ route('partner.edit',$data['partner_slug']) }}"
                                                     class="dropdown-item"><i class=" bx bx-edit-alt label-icon"></i>
                                                     Edit</a>
@@ -79,53 +73,6 @@
                                     </div>
                                 </td>
                             </tr>
-
-                            {{-- Show Modal --}}
-                            <div id="partnerShow{{ $data['partner_id'] }}" class="modal fade" tabindex="-1"
-                                aria-labelledby="myModalLabel" data-bs-scroll="true" aria-hidden="true"
-                                style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary">
-                                            <h5 class="modal-title text-light" id="myModalLabel">Category Show</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row form-group">
-                                                <div class="col-md-6 my-2">
-                                                    <label for="pro_cat_name">Category Name</label>
-                                                    <input disabled class="form-control" type="text" name="pro_cat_name" value="{{ $data['pro_cat_name'] }}">
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                    <label for="pro_cat_parent">Parent Category</label>
-                                                    <input disabled class="form-control" type="text" name="pro_cat_parent" value="{{ $data['pro_cat_parent'] }}">
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                    <label for="pro_cat_order">Order Level</label>
-                                                    <input disabled class="form-control" type="text" name="pro_cat_order" value="{{ $data['pro_cat_order'] }}">
-                                                </div>
-
-                                                <div class="col-md-6 my-2">
-
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                    <label for="pro_cat_image">Category Image</label>
-                                                    <img style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/'.$data['pro_cat_image']) }}" alt="Category Image">
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                        <label for="pro_cat_icon">Category Icon</label>
-                                                        <img style="width: 50px" class="m-auto" src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}" alt="Category Icon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary waves-effect"
-                                                data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
 
                             {{-- Delete Modal --}}
                             <div class="modal fade bs-example-modal-sm{{ $data['partner_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
