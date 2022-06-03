@@ -51,6 +51,8 @@ class BrandController extends Controller
             $brand_image = $request->file('brand_image');
             $brand_image_name = time() . '_' . rand(100000, 10000000) . '.' . $brand_image->getClientOriginalExtension();
             Image::make($brand_image)->resize(120, 120)->save('backend/uploads/brand/' . $brand_image_name);
+        }else{
+            $brand_image_name = '';
         }
 
         if ($request->brand_feature == 'on') {

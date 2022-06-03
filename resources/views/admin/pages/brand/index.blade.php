@@ -5,14 +5,12 @@
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0 font-size-18">Brands</h4>
-
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Brand</a></li>
                     <li class="breadcrumb-item active">All Brand</li>
                 </ol>
             </div>
-
         </div>
     </div>
 </div>
@@ -38,9 +36,13 @@
                             <tr class="text-center">
                                 <td>{{ $data['brand_name'] }}</td>
                                 <td>
+                                    @if ($data['brand_image'])
                                     <img style="width:50px"
-                                        src="{{ asset('backend/uploads/brand/'.$data['brand_image']) }}"
-                                        alt="Banner Image">
+                                    src="{{ asset('backend/uploads/brand/'.$data['brand_image']) }}"
+                                    alt="Brand Image">
+                                    @else
+                                    <img style="width:50px" src="{{ asset('backend/default/no_image.png') }}" alt="Brand Image">
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     @if ($data->brand_feature == 1)

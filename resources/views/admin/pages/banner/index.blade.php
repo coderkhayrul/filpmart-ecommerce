@@ -35,29 +35,27 @@
                                 <th>Middle Title</th>
                                 <th>Sub Title</th>
                                 <th>Button Title</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($banners as $data)
                             <tr>
-                                <td>
-                                    <img id="header_logo" style="width:100px"
-                                        src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}"
-                                        alt="Banner Image">
+                                <td class="text-center">
+                                    @if ($data['banner_image'])
+                                    <img id="banner_image" style="width:100px"
+                                    src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}"
+                                    alt="Banner Image">
+                                    @else
+                                    <img id="banner_image" style="width:100px"
+                                    src="{{ asset('backend/default/no_image.png') }}"
+                                    alt="Banner Image">
+                                    @endif
                                 </td>
                                 <td>{{ $data['banner_title'] }}</td>
                                 <td>{{ $data['banner_mid_title'] }}</td>
                                 <td>{{ $data['banner_subtitle'] }}</td>
                                 <td>{{ $data['banner_button'] }}</td>
-                                <td>
-                                    @if ($data->banner_status == 1)
-                                    <div class="badge badge-soft-success font-size-12">Active</div>
-                                    @else
-                                    <div class="badge badge-soft-danger font-size-12">Disabled</div>
-                                    @endif
-                                </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
@@ -77,9 +75,7 @@
                                                     Edit</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('banner.softdelete',$data['banner_slug']) }}"
-                                                    class="dropdown-item"><i class=" bx bxs-trash-alt label-icon"></i>
-                                                    Delete</a>
+                                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{ $data['banner_slug'] }}"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -135,6 +131,24 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary waves-effect"
                                                 data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                            {{-- Delete Modal --}}
+                            <div class="modal fade bs-example-modal-sm{{ $data['banner_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="mySmallModalLabel">Delete Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Are you sure to delete this?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                            <a href="{{ route('banner.softdelete',$data['banner_slug']) }}" class="btn btn-primary">Delete</a>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
