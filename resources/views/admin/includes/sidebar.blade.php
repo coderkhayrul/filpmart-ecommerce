@@ -43,8 +43,8 @@
                                 <span data-key="t-seller">Partner</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="#">All Partner</a></li>
-                                <li><a href="#">Add Partner</a></li>
+                                <li><a href="{{ route('partner.index') }}">All Partner</a></li>
+                                <li><a href="{{ route('partner.create') }}">Add Partner</a></li>
                             </ul>
                         </li>
 

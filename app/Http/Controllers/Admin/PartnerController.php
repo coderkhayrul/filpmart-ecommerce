@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
@@ -14,7 +15,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        //
+        $partners = Partner::where('partner_status',1 )->get();
+        return view('admin.pages.partner.index', compact('partners'));
     }
 
     /**
@@ -79,6 +81,17 @@ class PartnerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function softdelete($slug)
     {
         //
     }
