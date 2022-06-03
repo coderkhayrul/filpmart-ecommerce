@@ -42,17 +42,29 @@
                             @foreach ($categories as $data)
                             <tr>
                                 <td class="text-center">
+                                        @if ($data['pro_cat_icon'])
                                         <img id="category_icon" style="width:50px"
                                         src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}"
                                         alt="Category Icon">
+                                        @else
+                                        <img id="category_icon" style="width:50px"
+                                        src="{{ asset('backend/default/no_image.png') }}"
+                                        alt="Category Icon">
+                                        @endif
                                 </td>
                                 <td class="text-center">
+                                    @if ($data['pro_cat_image'])
                                     <img id="category_image" style="width:50px"
-                                        src="{{ asset('backend/uploads/category/'.$data['pro_cat_image']) }}"
-                                        alt="category_image">
+                                    src="{{ asset('backend/uploads/category/'.$data['pro_cat_image']) }}"
+                                    alt="category_image">
+                                    @else
+                                    <img id="category_image" style="width:50px"
+                                    src="{{ asset('backend/default/no_image.png') }}"
+                                    alt="category_image">
+                                    @endif
                                 </td>
                                 <td>{{ $data['pro_cat_name'] }}</td>
-                                <td>{{ $data['pro_cat_parent'] }}</td>
+                                <td>{{ $data->cat_parent->pro_cat_name }}</td>
                                 <td>{{ $data['pro_cat_order'] }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
@@ -73,9 +85,7 @@
                                                     Edit</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('category.softdelete',$data['pro_cat_slug']) }}"
-                                                    class="dropdown-item"><i class=" bx bxs-trash-alt label-icon"></i>
-                                                    Delete</a>
+                                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{ $data['pro_cat_slug'] }}"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -124,6 +134,25 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary waves-effect"
                                                 data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+
+                            {{-- Delete Modal --}}
+                            <div class="modal fade bs-example-modal-sm{{ $data['pro_cat_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="mySmallModalLabel">Delete Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Are you sure to delete this?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                            <a href="{{ route('category.softdelete',$data['pro_cat_slug']) }}" class="btn btn-primary">Delete</a>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->

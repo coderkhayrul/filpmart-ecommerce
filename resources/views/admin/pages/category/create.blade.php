@@ -37,13 +37,16 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            @php
+                                $categories = App\Models\Category::where('pro_cat_status', 1)->get();
+                            @endphp
                             <div class="col-md-6 my-2">
                                 <label for="pro_cat_parent">Panent Category</label>
                                 <select class="form-control" name="pro_cat_parent" id="pro_cat_parent">
                                     <option label="Select Panent Category"></option>
-                                    <option>Iphone</option>
-                                    <option>Tools</option>
-                                    <option>Gaming</option>
+                                    @foreach ($categories as $data)
+                                    <option value="{{ $data->pro_cat_id }}">{{ $data->pro_cat_name }}</option>
+                                    @endforeach
                                 </select>
                                 @error('pro_cat_parent')
                                     <span class="text-danger">{{ $message }}</span>

@@ -39,14 +39,14 @@
                                 @enderror
                             </div>
                             @php
-                                $categories = app\Models\Category::where('pro_cat_status', 1)->get();
+                                $categories = App\Models\Category::where('pro_cat_status', 1)->get();
                             @endphp
                             <div class="col-md-6 my-2">
                                 <label for="pro_cat_parent">Panent Category</label>
                                 <select class="form-control" name="pro_cat_parent" id="pro_cat_parent">
                                     <option label="Select Panent Category"></option>
                                     @foreach ($categories as $data)
-                                    <option {{ $data->pro_cat_id == $category->pro_cat_parent ? 'selected' : ''}}>{{ $data->pro_cat_name }}</option>
+                                    <option value="{{ $data->pro_cat_id }}" {{ $data->pro_cat_id == $category->pro_cat_parent ? 'selected' : ''}}>{{ $data->pro_cat_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('pro_cat_parent')

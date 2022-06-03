@@ -165,8 +165,30 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function softdelete($slug)
+    {
+        $category = Category::where('pro_cat_slug', $slug)->where('pro_cat_status', 1)->update([
+            'pro_cat_status' => 0,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        if ($category) {
+            Session::flash('success', 'Category Delete Successfully');
+            return redirect()->route('category.index');
+        } else {
+            Session::flash('error', 'Category Delete Failed!');
+            return redirect()->route('category.index');
+        }
     }
 }
