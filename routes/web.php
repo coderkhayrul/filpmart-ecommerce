@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,18 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
         Route::get('/delete/{slug}',[ BannerController::class, 'destroy' ])->name('banner.destroy');
     });
 
+    // <<===== PARTNER ROUTE LIST ======>>
+    Route::group(['prefix' => 'partner'], function() {
+        Route::get('/',[ PartnerController::class, 'index' ])->name('partner.index');
+        Route::get('/create',[ PartnerController::class, 'create' ])->name('partner.create');
+        Route::post('/',[ PartnerController::class, 'store' ])->name('partner.store');
+        Route::get('/show/{slug}',[ PartnerController::class, 'show' ])->name('partner.show');
+        Route::get('/edit/{slug}',[ PartnerController::class, 'edit' ])->name('partner.edit');
+        Route::put('/update/{slug}',[ PartnerController::class, 'update' ])->name('partner.update');
+        Route::get('/softdelete/{slug}',[ PartnerController::class, 'softdelete' ])->name('partner.softdelete');
+        Route::get('/delete/{slug}',[ PartnerController::class, 'destroy' ])->name('partner.destroy');
+    });
+
     // <<===== PRODUCT ROUTE LIST ======>>
     Route::group(['prefix' => 'product'], function() {
             Route::get('/',[ ProductController::class, 'index' ])->name('product.index');
@@ -88,7 +101,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::get('/softdelete/{slug}',[ ProductController::class, 'softdelete' ])->name('product.softdelete');
             Route::get('/delete/{slug}',[ ProductController::class, 'destroy' ])->name('product.destroy');
 
-        // <<===== BRAND ROUTE LIST ======>>
+        // <<===== PRODUCT BRAND ROUTE LIST ======>>
         Route::group(['prefix' => 'brand'], function() {
             Route::get('/',[ BrandController::class, 'index' ])->name('brand.index');
             Route::get('/create',[ BrandController::class, 'create' ])->name('brand.create');
@@ -100,7 +113,7 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::get('/delete/{slug}',[ BrandController::class, 'destroy' ])->name('brand.destroy');
         });
 
-        // <<===== CATEGORY ROUTE LIST ======>>
+        // <<===== PRODUCT CATEGORY ROUTE LIST ======>>
         Route::group(['prefix' => 'category'], function() {
             Route::get('/',[ CategoryController::class, 'index' ])->name('category.index');
             Route::get('/create',[ CategoryController::class, 'create' ])->name('category.create');
@@ -112,7 +125,6 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::get('/delete/{slug}',[ CategoryController::class, 'destroy' ])->name('category.destroy');
         });
     });
-
 });
 
 require __DIR__.'/auth.php';

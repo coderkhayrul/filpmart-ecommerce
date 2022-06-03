@@ -37,6 +37,16 @@
                                 <li><a href="{{ route('brand.index') }}">Brand</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-seller">Partner</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#">All Partner</a></li>
+                                <li><a href="#">Add Partner</a></li>
+                            </ul>
+                        </li>
 
                         <li class="menu-title mt-2" data-key="t-components">Advance Manage</li>
                         <li>
@@ -47,6 +57,16 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('banner.index') }}">All Banner</a></li>
                                 <li><a href="{{ route('banner.create') }}">Add Banner</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="truck"></i>
+                                <span data-key="t-seller">Seller</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#">All Seller</a></li>
+                                <li><a href="#">Add Seller</a></li>
                             </ul>
                         </li>
 
@@ -65,6 +85,18 @@
                             <a href="{{ route('admin.blank') }}">
                                 <i class="bx bx-file-blank"></i>
                                 <span data-key="t-dashboard">Blank</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i data-feather="trash-2"></i>
+                                <span data-key="t-recycle-bin">recycle Bin</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i data-feather="log-out"></i>
+                                <span data-key="t-logout">Logout</span>
                             </a>
                         </li>
                     </ul>
