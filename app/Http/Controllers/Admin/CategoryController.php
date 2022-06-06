@@ -125,4 +125,19 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function softdelete($slug){
+        $category = Category::where('pro_cat_slug', $slug)->update([
+            'pro_cat_status' => 0,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($category) {
+            Session::flash('success', 'Category Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Category Delete Failed');
+            return redirect()->back();
+        }
+    }
 }

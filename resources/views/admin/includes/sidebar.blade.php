@@ -31,8 +31,8 @@
                                 <span data-key="t-authentication">Products</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="#">Add New Product</a></li>
-                                <li><a href="#">All Product</a></li>
+                                <li><a href="{{ route('product.create') }}">Add New Product</a></li>
+                                <li><a href="{{ route('product.index') }}">All Product</a></li>
                                 <li><a href="{{ route('category.index') }}">Category</a></li>
                                 <li><a href="{{ route('brand.index') }}">Brand</a></li>
                             </ul>
@@ -47,6 +47,17 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('banner.index') }}">All Banner</a></li>
                                 <li><a href="{{ route('banner.create') }}">Add Banner</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="image"></i>
+                                <span data-key="t-banners">Seller</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('banner.index') }}">All Seller</a></li>
+                                <li><a href="{{ route('banner.create') }}">Add Seller</a></li>
                             </ul>
                         </li>
 

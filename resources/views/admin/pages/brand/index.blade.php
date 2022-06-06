@@ -69,7 +69,7 @@
                                 </td>
                             </tr>
 
-                            {{-- Show Modal --}}
+                            {{-- Delete Modal --}}
                             <div class="modal fade bs-example-modal-sm{{ $data['brand_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-sm modal-dialog-centered">
                                     <div class="modal-content">

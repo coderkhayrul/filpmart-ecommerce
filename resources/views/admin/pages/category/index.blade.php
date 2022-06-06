@@ -43,7 +43,7 @@
                             <tr>
                                 <td class="text-center">
                                         <img id="category_icon" style="width:50px"
-                                        src="{{ asset('backend/uploads/category/icons'.$data['pro_cat_icon']) }}"
+                                        src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}"
                                         alt="Category_Banner icon">
                                 </td>
                                 <td class="text-center">
@@ -62,79 +62,35 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <li>
-                                                <button class="dropdown-item" style="width: 100%" type="button"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#categoryShow{{ $data['pro_cat_id'] }}"><i
-                                                        class="bx bx-show-alt label-icon"></i> Show</button>
-                                            </li>
-                                            <li>
                                                 <a href="{{ route('category.edit',$data['pro_cat_slug']) }}"
                                                     class="dropdown-item"><i class=" bx bx-edit-alt label-icon"></i>
                                                     Edit</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('category.softdelete',$data['pro_cat_slug']) }}"
-                                                    class="dropdown-item"><i class=" bx bxs-trash-alt label-icon"></i>
-                                                    Delete</a>
+                                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm{{ $data['pro_cat_slug'] }}"><i class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
-
-                            {{-- Show Modal --}}
-                            <div id="categoryShow{{ $data['pro_cat_id'] }}" class="modal fade" tabindex="-1"
-                                aria-labelledby="myModalLabel" data-bs-scroll="true" aria-hidden="true"
-                                style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary">
-                                            <h5 class="modal-title text-light" id="myModalLabel">Category Show</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body m-auto">
-                                            <div class="row form-group">
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_title">Banner Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_title" value="{{ $data['banner_title'] }}">
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_mid_title">Banner Middle Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
-                                                </div>
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_subtitle">Banner Sub Title</label>
-                                                    <input disabled class="form-control" type="text" name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
-                                                </div>
-
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_button">Banner Button Name</label>
-                                                    <input disabled class="form-control" type="text" name="banner_button" value="{{ $data['banner_button'] }}">
-                                                </div>
-
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_url">Banner Url</label>
-                                                    <input disabled class="form-control" type="text" name="banner_url" value="{{ $data['banner_url'] }}">
-                                                </div>
-
-                                                <div class="col-md-6 my-2">
-                                                    <label for="banner_order">Banner Order</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
-                                                </div>
-
-                                                <div class="col-md-12 my-2 d-flex">
-                                                    <img style="width: 200px" class="m-auto" src="{{ asset('backend/uploads/banner/'.$data['banner_image']) }}" alt="Banner Image">
-                                                </div>
+                                {{-- Delete Modal --}}
+                                <div class="modal fade bs-example-modal-sm{{ $data['pro_cat_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="mySmallModalLabel">Delete Confirmation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary waves-effect"
-                                                data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
+                                            <div class="modal-body text-center">
+                                                <p>Are you sure to delete this?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                <a href="{{ route('category.softdelete',$data['pro_cat_slug']) }}" class="btn btn-primary">Delete</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div
                             @endforeach
                         </tbody>
                     </table>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
@@ -77,8 +78,9 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
         Route::get('/delete/{slug}',[ BannerController::class, 'destroy' ])->name('banner.destroy');
     });
 
-    // <<===== PRODUCT ROUTE LIST ======>>
+    // <<===== PRODUCT PREFIX ROUTE LIST ======>>
     Route::group(['prefix' => 'product'], function() {
+            // <<===== PRODUCT ROUTE LIST ======>>
             Route::get('/',[ ProductController::class, 'index' ])->name('product.index');
             Route::get('/create',[ ProductController::class, 'create' ])->name('product.create');
             Route::post('/',[ ProductController::class, 'store' ])->name('product.store');
@@ -111,6 +113,8 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::get('/softdelete/{slug}',[ CategoryController::class, 'softdelete' ])->name('category.softdelete');
             Route::get('/delete/{slug}',[ CategoryController::class, 'destroy' ])->name('category.destroy');
         });
+
+
     });
 
 });
