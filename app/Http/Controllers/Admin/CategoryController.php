@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -42,7 +43,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $this->validate($request,[
             'pro_cat_name' => 'required',
         ]);
@@ -87,7 +87,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
     }
@@ -98,9 +98,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $category = Category::where('pro_cat_slug', $slug)->where('pro_cat_status', 1)->firstOrFail();
+        return view('admin.pages.category.edit', compact('category'));
     }
 
     /**
@@ -110,9 +111,52 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+
+        $this->validate($request,[
+            'pro_cat_name' => 'required',
+        ]);
+
+        $category = Category::where('pro_cat_slug', $slug)->first();
+        if ($request->hasFile('pro_cat_image')) {
+            if (File::exists('backend/uploads/category/'.$category->pro_cat_image)) {
+                File::delete('backend/uploads/category/'.$category->pro_cat_image);
+            }
+            $category_image = $request->file('pro_cat_image');
+            $category_image_name = time() . '_' . rand(100000, 10000000) . '.' . $category_image->getClientOriginalExtension();
+            Image::make($category_image)->resize(250, 250)->save('backend/uploads/category/' . $category_image_name);
+        }else{
+            $category_image_name = $category->pro_cat_image;
+        }
+        if ($request->hasFile('pro_cat_icon')) {
+            if (File::exists('backend/uploads/category/icons/'.$category->pro_cat_icon)) {
+                File::delete('backend/uploads/category/icons/'.$category->pro_cat_icon);
+            }
+            $category_icon = $request->file('pro_cat_icon');
+            $category_icon_name = time() . '_' . rand(100000, 10000000) . '.' . $category_icon->getClientOriginalExtension();
+            Image::make($category_icon)->resize(20, 20)->save('backend/uploads/category/icons/' . $category_icon_name);
+        }else{
+            $category_icon_name = $category->pro_cat_icon;
+        }
+
+        $category = Category::where('pro_cat_slug', $slug)->where('pro_cat_status', 1)->update([
+            'pro_cat_name' => $request->pro_cat_name,
+            'pro_cat_slug' => Str::slug($request->pro_cat_name, '-'),
+            'pro_cat_parent' => $request->pro_cat_parent,
+            'pro_cat_order' => $request->pro_cat_order,
+            'pro_cat_image' => $category_image_name,
+            'pro_cat_icon' => $category_icon_name,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($category) {
+            Session::flash('success', 'Category Update Successfully');
+            return redirect()->route('category.index');
+        } else {
+            Session::flash('error', 'Category Update Failed!');
+            return redirect()->route('category.index');
+        }
     }
 
     /**
@@ -121,11 +165,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
     }
 
+<<<<<<< HEAD
     public function softdelete($slug){
         $category = Category::where('pro_cat_slug', $slug)->update([
             'pro_cat_status' => 0,
@@ -138,6 +183,27 @@ class CategoryController extends Controller
         } else {
             Session::flash('error', 'Category Delete Failed');
             return redirect()->back();
+=======
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function softdelete($slug)
+    {
+        $category = Category::where('pro_cat_slug', $slug)->where('pro_cat_status', 1)->update([
+            'pro_cat_status' => 0,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        if ($category) {
+            Session::flash('success', 'Category Delete Successfully');
+            return redirect()->route('category.index');
+        } else {
+            Session::flash('error', 'Category Delete Failed!');
+            return redirect()->route('category.index');
+>>>>>>> ac8eb711fc42ad9204bbf48dc007f546df58f2cc
         }
     }
 }

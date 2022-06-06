@@ -20,19 +20,20 @@
     <div class="col-md-12">
         <div class="card border border-primary">
             <div class="card-header bg-transparent border-primary d-flex justify-content-between">
-                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>Create Category </h5>
+                <h5 class="my-0 text-primary align-middle"><i class="mdi mdi-bullseye-arrow me-3"></i>Edit Category </h5>
                 <a href="{{ route('category.index') }}" class="btn btn-sm btn-primary waves-effect waves-light">
                     <i class="bx bx-list-plus font-size-20 align-middle me-2"></i> All Category
                 </a>
             </div>
             <div class="card-body">
                 <div class="card-body">
-                    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('category.update',$category->pro_cat_slug) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="row form-group">
                             <div class="col-md-6 my-2">
                                 <label for="pro_cat_name">Category Name</label>
-                                <input class="form-control" type="text" name="pro_cat_name" value="{{ old('pro_cat_name') }}">
+                                <input class="form-control" type="text" name="pro_cat_name" value="{{ $category->pro_cat_name }}">
                                 @error('pro_cat_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -45,7 +46,7 @@
                                 <select class="form-control" name="pro_cat_parent" id="pro_cat_parent">
                                     <option label="Select Panent Category"></option>
                                     @foreach ($categories as $data)
-                                    <option value="{{ $data->pro_cat_id }}">{{ $data->pro_cat_name }}</option>
+                                    <option value="{{ $data->pro_cat_id }}" {{ $data->pro_cat_id == $category->pro_cat_parent ? 'selected' : ''}}>{{ $data->pro_cat_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('pro_cat_parent')
@@ -54,7 +55,7 @@
                             </div>
                             <div class="col-md-6 my-2">
                                 <label for="banner_subtitle">Category Order</label>
-                                <input class="form-control" type="number" name="pro_cat_order" value="{{ old('pro_cat_order') }}">
+                                <input class="form-control" type="number" name="pro_cat_order" value="{{ $category->pro_cat_order }}">
                                 @error('banner_subtitle')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -72,7 +73,11 @@
                         </div>
 
                         <div class="col-md-6 my-2 d-flex">
+                            @if ($category->pro_cat_image)
+                            <img id="category_image_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/'.$category->pro_cat_image) }}" alt="Category Image">
+                            @else
                             <img id="category_image_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Category Image">
+                            @endif
                         </div>
 
                         <div class="col-md-6 my-2">
@@ -84,12 +89,16 @@
                         </div>
 
                         <div class="col-md-6 my-2 d-flex">
-                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Banner Image">
+                            @if ($category->pro_cat_icon)
+                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/icons/'.$category->pro_cat_icon) }}" alt="Category Image">
+                            @else
+                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Category Image">
+                            @endif
                         </div>
 
                         <div class="col-md-2 mt-4">
                             <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                <i class="bx bxs-save font-size-16 align-middle me-2"></i> Category Save
+                                <i class="bx bxs-save font-size-16 align-middle me-2"></i> Category Update
                             </button>
                         </div>
                     </div>
