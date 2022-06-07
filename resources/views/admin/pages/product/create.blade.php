@@ -27,7 +27,7 @@
             </div>
             <div class="card-body">
                 <div class="card-body">
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row form-group">
                             <div class="col-md-6 my-2">
@@ -41,14 +41,14 @@
                                 $categories = App\Models\Category::where('pro_cat_status', 1)->get();
                             @endphp
                             <div class="col-md-6 my-2">
-                                <label for="product_category">Product Category</label>
-                                <select class="form-control" name="" id="">
+                                <label for="pro_category_id">Product Category</label>
+                                <select class="form-control" name="pro_category_id" id="">
                                     <option label="Select Category"></option>
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->pro_cat_id }}">{{ $category->pro_cat_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('product_category')
+                                @error('pro_category_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
