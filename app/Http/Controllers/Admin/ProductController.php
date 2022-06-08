@@ -55,7 +55,7 @@ class ProductController extends Controller
 
             return $gallery_image = $request->file('product_gallery');
             // $images = '';
-
+        }
 
         // // Product Image Update
         // if ($request->hasFile('product_image')) {
@@ -101,7 +101,6 @@ class ProductController extends Controller
         // } else {
         //     Session::flash('error', 'Product Created Failed');
         //     return redirect()->back();
-        // }
     }
 
     /**
