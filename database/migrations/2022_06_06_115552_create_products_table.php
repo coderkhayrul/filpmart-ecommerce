@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('product_id');
             $table->integer('pro_category_id');
             $table->integer('brand_id');
+            $table->string('product_name');
             $table->string('product_price');
             $table->string('product_discount_price')->nullable();
             $table->integer('product_quantity');
