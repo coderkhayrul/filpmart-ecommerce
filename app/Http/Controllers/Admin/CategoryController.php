@@ -170,20 +170,6 @@ class CategoryController extends Controller
         //
     }
 
-<<<<<<< HEAD
-    public function softdelete($slug){
-        $category = Category::where('pro_cat_slug', $slug)->update([
-            'pro_cat_status' => 0,
-            'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
-
-        if ($category) {
-            Session::flash('success', 'Category Delete successfully');
-            return redirect()->back();
-        } else {
-            Session::flash('error', 'Category Delete Failed');
-            return redirect()->back();
-=======
     /**
      * Remove the specified resource from storage.
      *
@@ -203,7 +189,6 @@ class CategoryController extends Controller
         } else {
             Session::flash('error', 'Category Delete Failed!');
             return redirect()->route('category.index');
->>>>>>> ac8eb711fc42ad9204bbf48dc007f546df58f2cc
         }
     }
 }

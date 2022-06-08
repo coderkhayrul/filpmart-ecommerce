@@ -127,7 +127,7 @@
 
                         <div class="col-md-6 my-2">
                             <label for="product_gallery">Product Gallery Image</label>
-                            <input class="form-control" multiple type="file" name="product_gallery" value="{{ old('product_gallery') }}">
+                            <input class="form-control" multiple type="file" name="product_gallery[]" value="{{ old('product_gallery') }}">
                             @error('product_gallery')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

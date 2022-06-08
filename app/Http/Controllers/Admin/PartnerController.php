@@ -112,6 +112,7 @@ class PartnerController extends Controller
             'partner_title' => 'required',
             'partner_url' => 'required',
         ]);
+
         $partner = Partner::where('partner_slug', $slug)->where('partner_status', 1)->first();
         if ($request->hasFile('partner_logo')) {
             if (File::exists('backend/uploads/partner/'.$partner->partner_logo)) {
