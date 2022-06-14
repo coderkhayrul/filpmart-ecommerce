@@ -158,7 +158,7 @@
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Create Time</label>
                                                     <input disabled class="form-control" type="text"
-                                                        name="banner_order" value="{{ $data['created_at'] }}">
+                                                        name="banner_order" value="{{ $data['created_at']->diffForHumans() }}">
                                                 </div>
 
                                                 <div class="col-md-12 my-2 d-flex">
