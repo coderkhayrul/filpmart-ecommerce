@@ -45,16 +45,12 @@
                                         @if ($data['pro_cat_icon'])
                                         <img id="category_icon" style="width:50px"
                                         src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}"
-<<<<<<< HEAD
-                                        alt="Category_Banner icon">
-=======
                                         alt="Category Icon">
                                         @else
                                         <img id="category_icon" style="width:50px"
                                         src="{{ asset('backend/default/no_image.png') }}"
                                         alt="Category Icon">
                                         @endif
->>>>>>> ac8eb711fc42ad9204bbf48dc007f546df58f2cc
                                 </td>
                                 <td class="text-center">
                                     @if ($data['pro_cat_image'])
@@ -89,26 +85,6 @@
                                     </div>
                                 </td>
                             </tr>
-<<<<<<< HEAD
-                                {{-- Delete Modal --}}
-                                <div class="modal fade bs-example-modal-sm{{ $data['pro_cat_slug'] }}" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-sm modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="mySmallModalLabel">Delete Confirmation</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <p>Are you sure to delete this?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                <a href="{{ route('category.softdelete',$data['pro_cat_slug']) }}" class="btn btn-primary">Delete</a>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div
-=======
 
                             {{-- Show Modal --}}
                             <div id="categoryShow{{ $data['pro_cat_id'] }}" class="modal fade" tabindex="-1"
@@ -175,7 +151,6 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div>
->>>>>>> ac8eb711fc42ad9204bbf48dc007f546df58f2cc
                             @endforeach
                         </tbody>
                     </table>

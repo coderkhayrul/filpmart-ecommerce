@@ -103,61 +103,62 @@
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_mid_title">Category Name</label>
                                                     <input disabled class="form-control" type="text"
-                                                        name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
+                                                        name="banner_mid_title" value="{{ $data->category->pro_cat_name }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_subtitle">Brand Name</label>
                                                     <input disabled class="form-control" type="text"
-                                                        name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
+                                                        name="banner_subtitle" value="{{ $data->brand->brand_name }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_button">Price</label>
                                                     <input disabled class="form-control" type="text"
-                                                        name="banner_button" value="{{ $data['banner_button'] }}">
+                                                        name="banner_button" value="{{ $data['product_price'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_url">Discount Price</label>
                                                     <input disabled class="form-control" type="text" name="banner_url"
-                                                        value="{{ $data['banner_url'] }}">
+                                                        value="{{ $data['product_discount_price'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Order By</label>
                                                     <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                        name="banner_order" value="{{ $data['product_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Quantity</label>
                                                     <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                        name="banner_order" value="{{ $data['product_quantity'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Unit</label>
-                                                    <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_order" value="{{ $data['product_unit'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Creator</label>
-                                                    <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_order" value="{{ $data->creator->name }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Feature</label>
                                                     <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                        name="banner_order" value="{{ $data['product_feature'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Status</label>
-                                                    <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_order" value="{{ $data->product_status == '1' ? 'Active' : 'Disabled' }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Create Time</label>
-                                                    <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_order" value="{{ $data['created_at'] }}">
                                                 </div>
 
                                                 <div class="col-md-12 my-2 d-flex">

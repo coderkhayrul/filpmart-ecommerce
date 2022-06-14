@@ -18,4 +18,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'brand_id','brand_id');
     }
 
+    public function creator(){
+        return $this->belongsTo(User::class, 'product_creator');
+    }
+
 }
