@@ -72,17 +72,6 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">
-                                <i data-feather="image"></i>
-                                <span data-key="t-banners">Seller</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('banner.index') }}">All Seller</a></li>
-                                <li><a href="{{ route('banner.create') }}">Add Seller</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">
                                 <i data-feather="settings"></i>
                                 <span data-key="t-settings">Settings</span>
                             </a>
@@ -101,14 +90,17 @@
                         <li>
                             <a href="{{ route('admin.recycle.bin') }}">
                                 <i data-feather="trash-2"></i>
-                                <span data-key="t-recycle-bin">recycle Bin</span>
+                                <span data-key="t-recycle-bin">RecycleBin</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                                 <i data-feather="log-out"></i>
                                 <span data-key="t-logout">Logout</span>
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
