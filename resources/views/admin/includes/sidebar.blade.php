@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('admin.recycle.bin') }}">
                                 <i data-feather="trash-2"></i>
                                 <span data-key="t-recycle-bin">recycle Bin</span>
                             </a>

@@ -41,6 +41,7 @@ Route::get('/blank',[ AdminController::class, 'blank' ])->name('admin.blank');
 Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
 
     Route::get('/',[ AdminController::class, 'dashboard' ])->name('admin.dashboard');
+    Route::get('/recycle-bin',[ AdminController::class, 'recycle_bin' ])->name('admin.recycle.bin');
 
     // <<===== USER ROUTE LIST ======>>
     Route::group(['prefix' => 'user'], function() {

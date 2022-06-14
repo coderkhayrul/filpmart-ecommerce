@@ -14,4 +14,8 @@ class AdminController extends Controller
     function blank(){
         return view('admin.blank');
     }
+
+    public function recycle_bin(){
+        return view('admin.recycle_bin');
+    }
 }

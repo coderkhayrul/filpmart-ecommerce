@@ -86,7 +86,7 @@ class ProductController extends Controller
             'product_detils' => $request->product_detils,
             'product_image' => $product_image_name,
             'product_order' => $request->product_order,
-            'product_gallery' => json_encode($data),
+            'product_gallery' => implode(',', $data),
             'product_order' => $request->product_order,
             'product_detils' => $request->product_detils,
             'product_description' => $request->product_description,

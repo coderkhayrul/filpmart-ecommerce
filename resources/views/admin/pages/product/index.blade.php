@@ -37,6 +37,7 @@
                                 <th>Price</th>
                                 <th>Discount Price</th>
                                 <th>Quantity</th>
+                                <th>Images</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -54,6 +55,16 @@
                                 <td>{{ '$'.$data['product_price'] }}</td>
                                 <td>{{ '$'.$data['product_discount_price'] }}</td>
                                 <td>{{ $data['product_quantity'] }}</td>
+                                <td>
+                                    @php
+                                    $images=explode(',',$data->product_gallery)
+                                    @endphp
+
+                                    @foreach($images as $key =>$val)
+                                        <img src="{{ asset('backend/uploads/product/gallery/'.$val) }}"/>
+                                    @endforeach
+                                </td>
+
 
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
