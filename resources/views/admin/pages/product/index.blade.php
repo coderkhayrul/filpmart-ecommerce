@@ -37,7 +37,6 @@
                                 <th>Price</th>
                                 <th>Discount Price</th>
                                 <th>Quantity</th>
-                                <th>Images</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -55,17 +54,6 @@
                                 <td>{{ '$'.$data['product_price'] }}</td>
                                 <td>{{ '$'.$data['product_discount_price'] }}</td>
                                 <td>{{ $data['product_quantity'] }}</td>
-                                <td>
-                                    @php
-                                    $images=explode(',',$data->product_gallery)
-                                    @endphp
-
-                                    @foreach($images as $key =>$val)
-                                        <img src="{{ asset('backend/uploads/product/gallery/'.$val) }}"/>
-                                    @endforeach
-                                </td>
-
-
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
@@ -108,65 +96,87 @@
                                         <div class="modal-body m-auto">
                                             <div class="row form-group">
                                                 <div class="col-md-6 my-2">
-                                                    <label for="banner_title">Product Name</label>
-                                                    <input disabled class="form-control" type="text" name="banner_title" value="{{ $data['banner_title'] }}">
+                                                    <label for="product_name">Product Name</label>
+                                                    <input disabled class="form-control" type="text" name="product_name"
+                                                        value="{{ $data['product_name'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_mid_title">Category Name</label>
-                                                    <input disabled class="form-control" type="text" name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_mid_title" value="{{ $data['banner_mid_title'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_subtitle">Brand Name</label>
-                                                    <input disabled class="form-control" type="text" name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_subtitle" value="{{ $data['banner_subtitle'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_button">Price</label>
-                                                    <input disabled class="form-control" type="text" name="banner_button" value="{{ $data['banner_button'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_button" value="{{ $data['banner_button'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_url">Discount Price</label>
-                                                    <input disabled class="form-control" type="text" name="banner_url" value="{{ $data['banner_url'] }}">
+                                                    <input disabled class="form-control" type="text" name="banner_url"
+                                                        value="{{ $data['banner_url'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Order By</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Quantity</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Unit</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Creator</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Feature</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Status</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
 
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Create Time</label>
-                                                    <input disabled class="form-control" type="number" name="banner_order" value="{{ $data['banner_order'] }}">
+                                                    <input disabled class="form-control" type="number"
+                                                        name="banner_order" value="{{ $data['banner_order'] }}">
                                                 </div>
 
                                                 <div class="col-md-12 my-2 d-flex">
-                                                    <img style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/product/'.$data['product_image']) }}" alt="Product Image">
+                                                    <img style="width: 100px" class="m-auto"
+                                                        src="{{ asset('backend/uploads/product/'.$data['product_image']) }}"
+                                                        alt="Product Image">
                                                 </div>
-                                                {{ $data->product_gallery }}
+                                                @php
+                                                $images = explode(',',$data->product_gallery)
+                                                @endphp
+                                                @if ($data['product_gallery'])
+                                                @foreach($images as $key =>$val)
                                                 <div class="col-md-3 my-2 d-flex">
-                                                    <img style="width: 200px" class="m-auto" src="{{ asset('backend/uploads/product/gallery/'.$data->product_gallery) }}" alt="product Image">
+                                                    <img style="width: 200px" class="m-auto"
+                                                        src="{{ asset('backend/uploads/product/gallery/'.$val) }}"
+                                                        alt="product Image">
                                                 </div>
+                                                @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -176,6 +186,8 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div>
+
+                            {{-- Delete Modal --}}
                             @endforeach
                         </tbody>
                     </table>
