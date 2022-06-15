@@ -55,7 +55,7 @@ class ProductController extends Controller
             $gallerys = $request->file('product_gallery');
             foreach($gallerys as $gallery){
                 $gallery_name = 'pro' . '_' . rand(100000, 10000000) . '.' . $gallery->getClientOriginalExtension();
-                Image::make($gallery)->resize(120, 120)->save('backend/uploads/product/gallery/' . $gallery_name);
+                Image::make($gallery)->resize(700, 700)->save('backend/uploads/product/gallery/' . $gallery_name);
                 $data[] = $gallery_name;
             }
         }
@@ -67,7 +67,7 @@ class ProductController extends Controller
         if ($request->hasFile('product_image')) {
             $product_image = $request->file('product_image');
             $product_image_name = time() . '_' . rand(100000, 10000000) . '.' . $product_image->getClientOriginalExtension();
-            Image::make($product_image)->resize(120, 120)->save('backend/uploads/product/' . $product_image_name);
+            Image::make($product_image)->resize(700, 700)->save('backend/uploads/product/' . $product_image_name);
         }
 
         // Feature List
