@@ -64,7 +64,13 @@
                                     @endif
                                 </td>
                                 <td>{{ $data['pro_cat_name'] }}</td>
-                                <td>{{ $data->cat_parent->pro_cat_name }}</td>
+                                <td>
+                                    @if ($data->pro_cat_parent)
+                                    {{ $data->cat_parent->pro_cat_name }}
+                                    @else
+                                    N/A
+                                    @endif
+                                </td>
                                 <td>{{ $data['pro_cat_order'] }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">

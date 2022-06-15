@@ -41,14 +41,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request,[
-        //     'product_name' => 'required',
-        //     'pro_category_id' => 'required',
-        //     'brand_id' => 'required',
-        //     'product_price' => 'required',
-        //     'product_quantity' => 'required',
-        //     'product_image' => 'required',
-        // ]);
+        $this->validate($request,[
+            'product_name' => 'required',
+            'pro_category_id' => 'required',
+            'brand_id' => 'required',
+            'product_price' => 'required',
+            'product_quantity' => 'required',
+            'product_image' => 'required',
+        ]);
 
         // Multiple Image
         if($request->file('product_gallery')){
@@ -58,6 +58,9 @@ class ProductController extends Controller
                 Image::make($gallery)->resize(120, 120)->save('backend/uploads/product/gallery/' . $gallery_name);
                 $data[] = $gallery_name;
             }
+        }
+        else{
+            $data[] = '';
         }
 
         // // Product Image Update

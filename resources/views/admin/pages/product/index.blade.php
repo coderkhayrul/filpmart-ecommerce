@@ -48,7 +48,7 @@
                                         src="{{ asset('backend/uploads/product/'.$data['product_image']) }}"
                                         alt="Product Image">
                                 </td>
-                                <td>{{ $data['product_name'] }}</td>
+                                <td>{{ Str::limit($data['product_name'], 25, '...') }}</td>
                                 <td>{{ $data->category->pro_cat_name }}</td>
                                 <td>{{ $data->brand->brand_name }}</td>
                                 <td>{{ '$'.$data['product_price'] }}</td>
@@ -145,8 +145,8 @@
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Feature</label>
-                                                    <input disabled class="form-control" type="number"
-                                                        name="banner_order" value="{{ $data['product_feature'] }}">
+                                                    <input disabled class="form-control" type="text"
+                                                        name="banner_order" value="{{ $data->product_feature == 1 ? 'active' : 'disabled' }}">
                                                 </div>
                                                 <div class="col-md-6 my-2">
                                                     <label for="banner_order">Product Status</label>
