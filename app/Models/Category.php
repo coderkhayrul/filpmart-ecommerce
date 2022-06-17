@@ -13,4 +13,5 @@ class Category extends Model
     public function cat_parent(){
         return $this->belongsTo(Category::class, 'pro_cat_parent', 'pro_cat_id');
     }
+
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Product extends Model
 {
@@ -22,4 +23,7 @@ class Product extends Model
         return $this->belongsTo(User::class, 'product_creator');
     }
 
+    public function products(){
+        return $this->belongsTo(Product::class, 'pro_category_id');
+    }
 }
