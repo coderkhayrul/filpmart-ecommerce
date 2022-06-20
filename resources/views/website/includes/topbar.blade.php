@@ -68,15 +68,22 @@
                                     <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
                                             href="category.html">Categories <b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-header">Computer</li>
+                                            @php
+                                                $categories = App\Models\Category::where('pro_cat_status', 1)->where('pro_cat_parent', NULL)->get();
+                                            @endphp
+                                            @foreach ($categories as $category)
+                                            <li class="menu-header">{{ $category->pro_cat_name }}</li>
+                                            @php
+                                                $sub_catagory = App\Models\Category::where('pro_cat_status', 1)->where('pro_cat_parent', $category->pro_cat_id)->get();
+                                                $sub_cat_count = App\Models\Category::where('pro_cat_status', 1)->where('pro_cat_parent', $category->pro_cat_id)->get()->count();
+                                            @endphp
+                                            @if ($sub_cat_count != 0)
+                                            @foreach ($sub_catagory as $sub_data)
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Watches</a></li>
+                                                href="category.html">- {{ $sub_data->pro_cat_name }}</a></li>
+                                            @endforeach
+                                            @endif
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
