@@ -80,14 +80,6 @@
                             @endif
                         </div>
 
-                        <div class="col-md-6 my-2">
-                            <label for="pro_cat_icon">Category Icon</label>
-                            <input id="category_icon_input" class="form-control" type="file" name="pro_cat_icon" value="{{ old('pro_cat_icon') }}">
-                            @error('pro_cat_icon')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
                         <div class="col-md-6 my-2 d-flex">
                             @if ($category->pro_cat_icon)
                             <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/icons/'.$category->pro_cat_icon) }}" alt="Category Image">

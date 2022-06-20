@@ -11,7 +11,8 @@ class Category extends Model
     protected $guarded = [];
 
     public function cat_parent(){
-        return $this->belongsTo(Category::class, 'pro_cat_parent', 'pro_cat_id');
+        return $this->belongsTo('App\Models\Category', 'pro_cat_parent','pro_cat_id');
     }
+
 
 }
