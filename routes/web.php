@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WishlistController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,14 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
+
+// <<===== WISH LIST LIST ======>>
+Route::group(['prefix' => 'wishlist'], function() {
+    Route::get('/',[ WishlistController::class, 'index' ])->name('wishlist.index');
+    Route::get('/{slug}',[ WishlistController::class, 'store' ])->name('wishlist.store');
+    Route::get('/delete/{slug}',[ WishlistController::class, 'destroy' ])->name('wishlist.destroy');
+});
+
 
 /*
  *|---------------------------------------------------------------------|
