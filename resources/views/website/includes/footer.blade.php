@@ -9,28 +9,30 @@
                             <h4 class="module-title">Contact Us</h4>
                         </div>
                         <!-- /.module-heading -->
-
+                        @php
+                            $contactInfo = App\Models\ContactInfo::where('contact_status', 1)->where('contact_id', 1)->firstOrFail();
+                        @endphp
                         <div class="module-body">
                             <ul class="toggle-footer" style="">
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                                 class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
                                     <div class="media-body">
-                                        <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
+                                        <p>{{ $contactInfo->contact_address_one }}</p>
                                     </div>
                                 </li>
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                                 class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
                                     <div class="media-body">
-                                        <p>+(888) 123-4567<br>
-                                            +(888) 456-7890</p>
+                                        <p>{{ $contactInfo->contact_phone_one }}<br>
+                                            {{ $contactInfo->contact_phone_two }}</p>
                                     </div>
                                 </li>
                                 <li class="media">
                                     <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i
                                                 class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
-                                    <div class="media-body"> <span><a href="#">flipmart@themesground.com</a></span>
+                                    <div class="media-body"> <span><a href="#">{{ $contactInfo->contact_email_one }}</a></span>
                                     </div>
                                 </li>
                             </ul>
@@ -98,20 +100,18 @@
             </div>
         </div>
         <div class="copyright-bar">
+            @php
+                $social_media = App\Models\SocialMedia::where('sm_status', 1)->where('sm_id', 1)->firstOrFail();
+            @endphp
             <div class="container">
                 <div class="col-xs-12 col-sm-6 no-padding social">
                     <ul class="link">
-                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
-                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
-                        <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#"
-                                title="GooglePlus"></a></li>
-                        <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
-                        <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="#" title="PInterest"></a>
-                        </li>
-                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a>
-                        </li>
-                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a>
-                        </li>
+                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_facebook }}" title="Facebook"></a></li>
+                        <li class="tw pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_twitter }}" title="Twitter"></a></li>
+                        <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_google }}"title="GooglePlus"></a></li>
+                        <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_dribbble }}" title="PInterest"></a></li>
+                        <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_linkedin }}" title="Linkedin"></a></li>
+                        <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="{{ $social_media->sm_youtube }}" title="Youtube"></a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-6 no-padding">
