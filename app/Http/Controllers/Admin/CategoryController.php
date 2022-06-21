@@ -54,13 +54,6 @@ class CategoryController extends Controller
         }else{
             $category_image_name = '';
         }
-        if ($request->hasFile('pro_cat_icon')) {
-            $category_icon = $request->file('pro_cat_icon');
-            $category_icon_name = time() . '_' . rand(100000, 10000000) . '.' . $category_icon->getClientOriginalExtension();
-            Image::make($category_icon)->resize(20, 20)->save('backend/uploads/category/icons/' . $category_icon_name);
-        }else{
-            $category_icon_name = '';
-        }
 
         $category = Category::create([
             'pro_cat_name' => $request->pro_cat_name,
@@ -68,7 +61,7 @@ class CategoryController extends Controller
             'pro_cat_parent' => $request->pro_cat_parent,
             'pro_cat_order' => $request->pro_cat_order,
             'pro_cat_image' => $category_image_name,
-            'pro_cat_icon' => $category_icon_name,
+            'pro_cat_icon' => $request->pro_cat_icon,
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
@@ -129,16 +122,6 @@ class CategoryController extends Controller
         }else{
             $category_image_name = $category->pro_cat_image;
         }
-        if ($request->hasFile('pro_cat_icon')) {
-            if (File::exists('backend/uploads/category/icons/'.$category->pro_cat_icon)) {
-                File::delete('backend/uploads/category/icons/'.$category->pro_cat_icon);
-            }
-            $category_icon = $request->file('pro_cat_icon');
-            $category_icon_name = time() . '_' . rand(100000, 10000000) . '.' . $category_icon->getClientOriginalExtension();
-            Image::make($category_icon)->resize(20, 20)->save('backend/uploads/category/icons/' . $category_icon_name);
-        }else{
-            $category_icon_name = $category->pro_cat_icon;
-        }
 
         $category = Category::where('pro_cat_slug', $slug)->where('pro_cat_status', 1)->update([
             'pro_cat_name' => $request->pro_cat_name,
@@ -146,7 +129,7 @@ class CategoryController extends Controller
             'pro_cat_parent' => $request->pro_cat_parent,
             'pro_cat_order' => $request->pro_cat_order,
             'pro_cat_image' => $category_image_name,
-            'pro_cat_icon' => $category_icon_name,
+            'pro_cat_icon' => $request->pro_cat_icon,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 

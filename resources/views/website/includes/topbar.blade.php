@@ -273,15 +273,6 @@
                                                             @else
                                                             Not Found!
                                                             @endif
-                                                            {{-- <li><a href="#">Laptop Skins</a></li>
-                                                            <li><a href="#">Apple</a></li>
-                                                            <li><a href="#">Dell</a></li>
-                                                            <li><a href="#">Lenovo</a></li>
-                                                            <li><a href="#">Microsoft</a></li>
-                                                            <li><a href="#">Asus</a></li>
-                                                            <li><a href="#">Adapters</a></li>
-                                                            <li><a href="#">Batteries</a></li>
-                                                            <li><a href="#">Cooling Pads</a></li> --}}
                                                         </ul>
                                                     </div>
                                                     <!-- /.col -->

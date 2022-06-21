@@ -10,8 +10,13 @@
                 @endphp
                 @foreach ($categories as $category)
                 <li class="dropdown menu-item">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag"
-                            aria-hidden="true"></i>{{ $category->pro_cat_name }}</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @if ($category->pro_cat_icon)
+                            <i class="icon {{ $category->pro_cat_icon }}" aria-hidden="true"></i>
+                        @else
+                        <i class="icon fa fa-bars" aria-hidden="true"></i>
+                        @endif
+                        {{ $category->pro_cat_name }}</a>
                     @php
                         $cid=$category->pro_cat_id;
                         $subCategories = App\Models\Category::where('pro_cat_status', 1)->where('pro_cat_parent',$cid)->get();

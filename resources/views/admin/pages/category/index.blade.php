@@ -43,9 +43,7 @@
                             <tr>
                                 <td class="text-center">
                                         @if ($data['pro_cat_icon'])
-                                        <img id="category_icon" style="width:50px"
-                                        src="{{ asset('backend/uploads/category/icons/'.$data['pro_cat_icon']) }}"
-                                        alt="Category Icon">
+                                        <i style="font-size:3em;" class="{{ $data['pro_cat_icon'] }}" aria-hidden="true"></i>
                                         @else
                                         <img id="category_icon" style="width:50px"
                                         src="{{ asset('backend/default/no_image.png') }}"

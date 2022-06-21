@@ -55,12 +55,16 @@
                             <div class="col-md-6 my-2">
                                 <label for="banner_subtitle">Category Order</label>
                                 <input class="form-control" type="number" name="pro_cat_order" value="{{ old('pro_cat_order') }}">
-                                @error('banner_subtitle')
+                                @error('pro_cat_order')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-md-6 my-2">
-
+                                <label for="banner_subtitle">Category Icon (<span class="text-danger">font awesome 4*</span>)</label>
+                                <input class="form-control" type="text" name="pro_cat_icon" value="{{ old('pro_cat_icon') }}" placeholder="example: fa fa-product-hunt">
+                                @error('pro_cat_icon')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                         <div class="col-md-6 my-2">
@@ -73,18 +77,6 @@
 
                         <div class="col-md-6 my-2 d-flex">
                             <img id="category_image_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Category Image">
-                        </div>
-
-                        <div class="col-md-6 my-2">
-                            <label for="pro_cat_icon">Category Icon</label>
-                            <input id="category_icon_input" class="form-control" type="file" name="pro_cat_icon" value="{{ old('pro_cat_icon') }}">
-                            @error('pro_cat_icon')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 my-2 d-flex">
-                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Banner Image">
                         </div>
 
                         <div class="col-md-2 mt-4">
@@ -105,17 +97,6 @@
     let reader = new FileReader();
     reader.onload = (e) => {
         $('#category_image_preview').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(this.files[0]);
-    });
-</script>
-
-<script type="text/javascript">
-    // Category Icon
-    $('#category_icon_input').change(function(){
-    let reader = new FileReader();
-    reader.onload = (e) => {
-        $('#category_icon_preview').attr('src', e.target.result);
     }
     reader.readAsDataURL(this.files[0]);
     });

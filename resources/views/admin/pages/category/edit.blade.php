@@ -60,8 +60,21 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-6 my-2">
-
+                            <div class="col-md-4 my-2">
+                                <label for="banner_subtitle">Category Icon (<span class="text-danger">font awesome 4*</span>)</label>
+                                <input class="form-control" type="text" name="pro_cat_icon" value="{{ $category->pro_cat_icon }}" placeholder="example: fa fa-product-hunt">
+                                @error('pro_cat_icon')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-md-2 my-2" style="padding-top: 1.5rem!important;">
+                                @if ($category->pro_cat_icon)
+                                <i style="font-size:3em;" class="{{ $data['pro_cat_icon'] }}" aria-hidden="true"></i>
+                                @else
+                                <img id="category_icon" style="width:50px"
+                                src="{{ asset('backend/default/no_image.png') }}"
+                                alt="Category Icon">
+                                @endif
                             </div>
 
                         <div class="col-md-6 my-2">
@@ -77,14 +90,6 @@
                             <img id="category_image_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/'.$category->pro_cat_image) }}" alt="Category Image">
                             @else
                             <img id="category_image_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Category Image">
-                            @endif
-                        </div>
-
-                        <div class="col-md-6 my-2 d-flex">
-                            @if ($category->pro_cat_icon)
-                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/uploads/category/icons/'.$category->pro_cat_icon) }}" alt="Category Image">
-                            @else
-                            <img id="category_icon_preview" style="width: 100px" class="m-auto" src="{{ asset('backend/default/no_image.png') }}" alt="Category Image">
                             @endif
                         </div>
 
@@ -106,17 +111,6 @@
     let reader = new FileReader();
     reader.onload = (e) => {
         $('#category_image_preview').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(this.files[0]);
-    });
-</script>
-
-<script type="text/javascript">
-    // Category Icon
-    $('#category_icon_input').change(function(){
-    let reader = new FileReader();
-    reader.onload = (e) => {
-        $('#category_icon_preview').attr('src', e.target.result);
     }
     reader.readAsDataURL(this.files[0]);
     });
