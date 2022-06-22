@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WishlistController;
+use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,13 @@ Route::group(['prefix' => 'wishlist'], function() {
     Route::get('/',[ WishlistController::class, 'index' ])->name('wishlist.index');
     Route::get('/{slug}',[ WishlistController::class, 'store' ])->name('wishlist.store');
     Route::get('/delete/{slug}',[ WishlistController::class, 'destroy' ])->name('wishlist.destroy');
+});
+
+// <<===== ADD TO CART LIST ======>>
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('/',[ CartController::class, 'index'])->name('cart.index');
+    Route::get('/{slug}',[ CartController::class, 'store'])->name('cart.store');
+    Route::get('/delete/{id}',[ CartController::class, 'destroy'])->name('cart.destroy');
 });
 
 
