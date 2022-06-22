@@ -27,8 +27,9 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown"
-                                data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
+                                data-toggle="dropdown"><span class="value">Bangla </span><b class="caret"></b></a>
                             <ul class="dropdown-menu">
+                                <li><a href="#">Bangla</a></li>
                                 <li><a href="#">English</a></li>
                                 <li><a href="#">French</a></li>
                                 <li><a href="#">German</a></li>
