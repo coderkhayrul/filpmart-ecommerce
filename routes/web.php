@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
@@ -144,6 +145,18 @@ Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function() {
             Route::put('/update/{slug}',[ CategoryController::class, 'update' ])->name('category.update');
             Route::get('/softdelete/{slug}',[ CategoryController::class, 'softdelete' ])->name('category.softdelete');
             Route::get('/delete/{slug}',[ CategoryController::class, 'destroy' ])->name('category.destroy');
+        });
+
+        // <<===== COUPON ROUTE LIST ======>>
+        Route::group(['prefix' => 'coupon'], function() {
+            Route::get('/',[ CouponController::class, 'index' ])->name('coupon.index');
+            Route::get('/create',[ CouponController::class, 'create' ])->name('coupon.create');
+            Route::post('/',[ CouponController::class, 'store' ])->name('coupon.store');
+            Route::get('/show/{slug}',[ CouponController::class, 'show' ])->name('coupon.show');
+            Route::get('/edit/{slug}',[ CouponController::class, 'edit' ])->name('coupon.edit');
+            Route::put('/update/{slug}',[ CouponController::class, 'update' ])->name('coupon.update');
+            Route::get('/softdelete/{slug}',[ CouponController::class, 'softdelete' ])->name('coupon.softdelete');
+            Route::get('/delete/{slug}',[ CouponController::class, 'destroy' ])->name('coupon.destroy');
         });
 
     });

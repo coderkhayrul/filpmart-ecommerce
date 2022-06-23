@@ -69,6 +69,28 @@
                                 <li><a href="#">Add Seller</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="gift"></i>
+                                <span data-key="t-coupon">Coupons</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('coupon.index') }}">All Coupon</a></li>
+                                <li><a href="{{ route('coupon.create') }}">Add Coupon</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="file-text"></i>
+                                <span data-key="t-banners">Reports</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#">Product Stock</a></li>
+                                <li><a href="#">Product Sell</a></li>
+                                <li><a href="#">Wishlist Product</a></li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">
