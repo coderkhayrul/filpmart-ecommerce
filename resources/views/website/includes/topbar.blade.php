@@ -6,11 +6,20 @@
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+                        @auth
+                            <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+                        @endauth
                         <li><a href="{{ route('wishlist.index') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="{{ route('cart.index') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                        <li><a href="{{ route('website.login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
+                        @auth
+                            <li><a onclick="event.preventDefault();  document.getElementById('logout-form').submit();" href="{{ route('logout') }}"><i class="icon fa fa-sign-out"></i>Logout</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        @else
+                            <li><a href="{{ route('website.login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
+                        @endauth
                     </ul>
                 </div>
                 <!-- /.cnt-account -->
@@ -108,10 +117,10 @@
                             data-toggle="dropdown">
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                                <div class="basket-item-count"><span class="count">{{ Cart::getTotalQuantity(); }}</span></div>
+                                <div class="basket-item-count"><span class="count">{{ Cart::getTotalQuantity() }}</span></div>
                                 <div class="total-price-basket"> <span class="lbl">cart -</span> <span
                                         class="total-price"> <span class="sign">$</span><span
-                                            class="value">{{ Cart::getSubTotal(); }}</span> </span> </div>
+                                            class="value">{{ Cart::getSubTotal() }}</span> </span> </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu">

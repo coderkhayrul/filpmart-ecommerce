@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
 Route::get('/user-login', [WebsiteController::class, 'login'])->name('website.login');
+Route::post('/user-access', [WebsiteController::class, 'login_access'])->name('website.user-access');
+Route::post('/user-register', [WebsiteController::class, 'register'])->name('website.register');
 
 // <<===== WISH LIST LIST ======>>
 Route::group(['prefix' => 'wishlist'], function() {

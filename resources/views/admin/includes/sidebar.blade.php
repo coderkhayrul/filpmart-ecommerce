@@ -116,6 +116,12 @@
                             </a>
                         </li>
                         <li>
+                            <a target="_blank" href="{{ route('website.home') }}">
+                                <i data-feather="globe"></i>
+                                <span data-key="t-logout">Website</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                                 <i data-feather="log-out"></i>
                                 <span data-key="t-logout">Logout</span>
