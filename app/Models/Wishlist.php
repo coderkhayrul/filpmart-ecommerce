@@ -9,6 +9,6 @@ class Wishlist extends Model
 {
     use HasFactory;
 
-    protected $fillable= ['product_id', 'wishlist_status'];
+    protected $fillable= ['product_id', 'wishlist_status', 'user_id'];
 
 }

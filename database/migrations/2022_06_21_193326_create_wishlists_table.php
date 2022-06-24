@@ -15,6 +15,7 @@ class CreateWishlistsTable extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->bigIncrements('wishlist_id');
+            $table->integer('user_id');
             $table->integer('product_id');
             $table->integer('wishlist_status')->default(1);
             $table->timestamps();

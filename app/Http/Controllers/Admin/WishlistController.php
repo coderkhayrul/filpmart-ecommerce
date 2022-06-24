@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Wishlist;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -13,18 +16,18 @@ class WishlistController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $wishlists = Wishlist::where('wishlist_status', 1)->get();
+        $wishlists = Wishlist::where('wishlist_status', 1)->where('user_id', auth()->user()->id)->get();
         return view('website.wishlist', compact('wishlists'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -34,16 +37,21 @@ class WishlistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request, $slug)
     {
-        $product = Product::where('product_status', 1)->where('product_slug', $slug)->first();
-        $wishlist = new Wishlist();
-        $wishlist->product_id = $product->product_id;
-        $wishlist->save();
-        return redirect()->back();
+        if (Auth::check()) {
+            $product = Product::where('product_status', 1)->where('product_slug', $slug)->first();
+            $wishlist = new Wishlist();
+            $wishlist->user_id = Auth::user()->id;
+            $wishlist->product_id = $product->product_id;
+            $wishlist->save();
+            return redirect()->back()->with('success', 'Added to wishlist');
+        } else {
+            return redirect()->back()->with('error', 'Please login to add to wishlist');
+        }
     }
 
     public function destroy($slug){
