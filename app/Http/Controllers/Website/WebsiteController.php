@@ -65,6 +65,7 @@ class WebsiteController extends Controller
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
+//        Redirect Home Page
         return redirect()->route('website.home');
     }
 }
