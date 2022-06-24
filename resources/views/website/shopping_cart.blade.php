@@ -54,7 +54,7 @@
                                     </a>
                                 </td>
                                 <td class="cart-product-name-info">
-                                    <h4 class='cart-product-description'><a href="detail.html">{{ $cart->name }}</a>
+                                    <h4 class='cart-product-description'><a href="#">{{ $cart->name }}</a>
                                     </h4>
                                     <div class="row">
                                         <div class="col-sm-6">

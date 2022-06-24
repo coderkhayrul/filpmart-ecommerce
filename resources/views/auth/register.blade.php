@@ -25,6 +25,19 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+            <!-- Role -->
+            <div class="mt-4">
+                <x-label for="role" :value="__('Role')" />
+                @php
+                    $roles = \Spatie\Permission\Models\Role::all();
+                @endphp
+                <select name="role" class="block mt-1 w-full" required>
+                    <option selected disabled>Select Role</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <!-- Password -->
             <div class="mt-4">

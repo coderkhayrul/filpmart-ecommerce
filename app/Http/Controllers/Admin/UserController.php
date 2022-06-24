@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 
 class UserController extends Controller
@@ -16,18 +22,18 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
-        $users = User::where('status', 1)->orderby('id','ASC')->get();
+        $users = User::where('status', 1)->orderby('id', 'ASC')->get();
         return view('admin.pages.users.index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -37,16 +43,16 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
-            'role' => 'required',
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
@@ -54,17 +60,16 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role' => $request->role,
             'slug' => Str::slug($request->name, '-'),
             'password' => Hash::make($request->password),
             'address' => $request->address,
             'status' => 1
         ]);
 
-        if($user){
+        if ($user) {
             Session::flash('success', 'User created successfully');
             return redirect()->back();
-        }else{
+        } else {
             Session::flash('error', 'User created Failed!');
             return redirect()->back();
         }
@@ -73,20 +78,20 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $slug
+     * @return Application|Factory|View
      */
     public function show($slug)
     {
-        $data = User::where('slug',$slug)->firstOrFail();
+        $data = User::where('slug', $slug)->firstOrFail();
         return view('admin.pages.users.show', compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $slug
+     * @return Application|Factory|View
      */
     public function edit($slug)
     {
@@ -97,34 +102,33 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $slug
+     * @return RedirectResponse
      */
     public function update(Request $request, $slug)
     {
-        $data = User::where('status', 1)->where('slug' ,$slug)->firstOrFail();
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->role = $request->role;
-        $data->address = $request->address;
-        $data->update();
-
-        if($data){
+        $user = User::where('status', 1)->where('slug', $slug)->firstOrFail();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->update();
+        $user->syncRoles($request->role);
+        if ($user) {
             Session::flash('success', 'User Update successfully');
-            return redirect()->back();
-        }else{
+            return redirect()->route('user.index');
+        } else {
             Session::flash('error', 'User Update Failed!');
-            return redirect()->back();
+            return redirect()->route('user.index');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $slug
+     * @return Response
      */
     public function destroy($slug)
     {
@@ -132,10 +136,11 @@ class UserController extends Controller
     }
 
     /**
-     * Temporaly Remove the specified resource from storage.
+     * Temporally Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $slug
+     * @return RedirectResponse
      */
     public function softdelete(Request $request, $slug)
     {
@@ -143,10 +148,10 @@ class UserController extends Controller
         $data->status = 0;
         $data->update();
 
-        if($data){
+        if ($data) {
             Session::flash('success', 'User Delete successfully');
             return redirect()->back();
-        }else{
+        } else {
             Session::flash('error', 'User Delete Failed!');
             return redirect()->back();
         }
@@ -157,8 +162,8 @@ class UserController extends Controller
     /**
      * Suspend the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $slug
+     * @return void
      */
     public function suspend($slug)
     {
