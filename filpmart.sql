@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 21, 2022 at 10:52 PM
+-- Generation Time: Jun 24, 2022 at 10:32 PM
 -- Server version: 8.0.29-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -182,6 +182,37 @@ INSERT INTO `contact_infos` (`contact_id`, `contact_phone_one`, `contact_phone_t
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `coupon_id` bigint UNSIGNED NOT NULL,
+  `coupon_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_starting` date NOT NULL,
+  `coupon_ending` date NOT NULL,
+  `coupon_remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_creator` int NOT NULL,
+  `coupon_editor` int DEFAULT NULL,
+  `coupon_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_status` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`coupon_id`, `coupon_title`, `coupon_code`, `coupon_amount`, `coupon_starting`, `coupon_ending`, `coupon_remarks`, `coupon_creator`, `coupon_editor`, `coupon_slug`, `coupon_status`, `created_at`, `updated_at`) VALUES
+(2, 'NEW YEAR', 'NEWYEAR', '500', '2022-06-23', '2022-06-30', NULL, 1, NULL, '62b3edab3ef57', 1, '2022-06-22 22:35:55', '2022-06-22 22:35:55'),
+(3, 'DIGITAL MALA', 'DIGITALMALA', '1000', '2022-06-23', '2022-06-25', 'Ad ex nihil autem mi', 1, NULL, '62b3edce27f87', 1, '2022-06-22 22:36:30', '2022-06-22 22:36:30'),
+(4, 'GIVEAWAY', 'GIVEAWAY', '1500', '2022-06-24', '2022-06-24', 'Testing', 1, NULL, '62b4c6ae43194', 1, '2022-06-23 14:01:50', '2022-06-23 14:01:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -225,7 +256,41 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2022_06_06_103811_create_sellers_table', 5),
 (13, '2022_06_03_071006_create_partners_table', 6),
 (15, '2022_06_06_115552_create_products_table', 7),
-(16, '2022_06_21_193326_create_wishlists_table', 8);
+(16, '2022_06_21_193326_create_wishlists_table', 8),
+(18, '2022_06_22_173922_create_coupons_table', 9),
+(19, '2022_06_24_204444_create_permission_tables', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(2, 'App\\Models\\User', 1),
+(4, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -258,6 +323,31 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'User Index', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
+(2, 'User Create', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
+(3, 'User Show', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
+(4, 'User Edit', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
+(5, 'User Delete', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37');
 
 -- --------------------------------------------------------
 
@@ -322,6 +412,41 @@ INSERT INTO `products` (`product_id`, `pro_category_id`, `brand_id`, `product_na
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(2, 'Super Admin', 'web', '2022-06-24 14:57:34', '2022-06-24 14:57:34'),
+(3, 'Admin', 'web', '2022-06-24 14:57:34', '2022-06-24 14:57:34'),
+(4, 'Editor', 'web', '2022-06-24 14:57:34', '2022-06-24 14:57:34'),
+(5, 'User', 'web', '2022-06-24 14:57:34', '2022-06-24 14:57:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sellers`
 --
 
@@ -371,8 +496,7 @@ CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` int NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int NOT NULL DEFAULT '1' COMMENT '1 for active and 0 for deactive',
   `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -387,10 +511,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `role`, `slug`, `status`, `address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@mail.com', '01835061968', 1, 'u-admin', 1, NULL, NULL, '$2y$10$uwKZM0zz2NatpomZt/cNouC95RgaX2t75LLTN7ynQdBF/fpBQOrUK', NULL, '2022-05-23 09:02:19', '2022-05-23 09:02:19'),
-(2, 'Wynne Waller', 'doliko@mailinator.com', '+1 (682) 516-1855', 1, 'wynne-waller', 0, 'Officia quibusdam qu', NULL, '$2y$10$aiITqUeZ6YWkLOmSxgRnTe/Xb0MnijIN7HzPbLHnPlwagJeHzg6CK', NULL, NULL, '2022-05-23 21:42:39'),
-(3, 'Kiona Morris', 'ledecur@mailinator.com', '+1 (123) 358-6425', 2, 'kiona-morris', 0, 'Aspernatur facilis l', NULL, '$2y$10$9JJgVuIYWSHHQe6vcUQCTuEgQW9d.tNm/mu.eC0RUToJY1iyLcvbW', NULL, NULL, '2022-05-24 03:42:48');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `slug`, `status`, `address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Khayrul', 'admin@mail.com', '01835061968', 'khayrul', 1, NULL, NULL, '$2y$10$E/gK0AeBwxxFh8PPncrVUOfktjrfRYNrmiOMPmg55Ql5sDdtHnjXW', NULL, '2022-06-24 15:18:42', '2022-06-24 16:24:01'),
+(2, 'Hasan', 'hasan@gmail.com', '01303132067', 'hasan', 1, NULL, NULL, '$2y$10$Q.W6rGZB341rSvazavI63.0oz.ADpLhf6k1vrwx1kFYnJDQSm3Asu', NULL, '2022-06-24 16:11:39', '2022-06-24 16:12:10');
 
 -- --------------------------------------------------------
 
@@ -400,6 +523,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `role`, `slug`, `status`, `
 
 CREATE TABLE `wishlists` (
   `wishlist_id` bigint UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
   `product_id` int NOT NULL,
   `wishlist_status` int NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -410,8 +534,9 @@ CREATE TABLE `wishlists` (
 -- Dumping data for table `wishlists`
 --
 
-INSERT INTO `wishlists` (`wishlist_id`, `product_id`, `wishlist_status`, `created_at`, `updated_at`) VALUES
-(7, 11, 1, '2022-06-21 15:26:17', '2022-06-21 15:26:17');
+INSERT INTO `wishlists` (`wishlist_id`, `user_id`, `product_id`, `wishlist_status`, `created_at`, `updated_at`) VALUES
+(12, 1, 11, 1, '2022-06-24 14:08:00', '2022-06-24 14:08:00'),
+(13, 1, 10, 1, '2022-06-24 14:08:04', '2022-06-24 14:08:04');
 
 --
 -- Indexes for dumped tables
@@ -449,6 +574,13 @@ ALTER TABLE `contact_infos`
   ADD PRIMARY KEY (`contact_id`);
 
 --
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`coupon_id`),
+  ADD UNIQUE KEY `coupons_coupon_slug_unique` (`coupon_slug`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -460,6 +592,20 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
 -- Indexes for table `partners`
@@ -474,6 +620,13 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -486,6 +639,20 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `sellers`
@@ -505,8 +672,8 @@ ALTER TABLE `social_media`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD UNIQUE KEY `users_phone_unique` (`phone`),
-  ADD UNIQUE KEY `users_slug_unique` (`slug`);
+  ADD UNIQUE KEY `users_slug_unique` (`slug`),
+  ADD UNIQUE KEY `users_phone_unique` (`phone`);
 
 --
 -- Indexes for table `wishlists`
@@ -549,6 +716,12 @@ ALTER TABLE `contact_infos`
   MODIFY `contact_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `coupon_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -558,13 +731,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
   MODIFY `partner_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -577,6 +756,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `products`
   MODIFY `product_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sellers`
@@ -594,13 +779,36 @@ ALTER TABLE `social_media`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `wishlist_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `wishlist_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
