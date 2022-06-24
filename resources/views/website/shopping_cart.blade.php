@@ -5,7 +5,7 @@
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li class='active'>Shopping Cart</li>
                 </ul>
             </div><!-- /.breadcrumb-inner -->
@@ -44,14 +44,12 @@
                         </tfoot>
                         <tbody>
 
-
-
-                            @foreach ($allcart as $cart)
+                        @forelse ($allcart as $cart)
                             <tr>
                                 <td class="romove-item"><a href="{{ route('cart.destroy',$cart->id) }}" title="cancel" class="icon"><i
                                             class="fa fa-trash-o"></i></a></td>
                                 <td class="cart-image">
-                                    <a class="entry-thumbnail" href="detail.html">
+                                    <a class="entry-thumbnail" href="#">
                                         <img src="{{ asset('backend/uploads/product/'.$cart->attributes->product_image) }}" alt="">
                                     </a>
                                 </td>
@@ -85,12 +83,11 @@
                                 <td class="cart-product-grand-total"><span class="cart-grand-total-price">${{ $cart->getPriceSum() }}</span>
                                 </td>
                             </tr>
-                            @endforeach
-
-
-
-
-
+                        @empty
+                            <tr>
+                                No Product in Cart
+                            </tr>
+                        @endforelse
                         </tbody><!-- /tbody -->
                     </table><!-- /table -->
                 </div>
@@ -181,10 +178,10 @@
                         <tr>
                             <th>
                                 <div class="cart-sub-total">
-                                    Subtotal<span class="inner-left-md">${{ Cart::getSubTotal(); }}</span>
+                                    Subtotal<span class="inner-left-md">${{ Cart::getSubTotal() }}</span>
                                 </div>
                                 <div class="cart-grand-total">
-                                    Grand Total<span class="inner-left-md">${{ Cart::getTotal(); }}</span>
+                                    Grand Total<span class="inner-left-md">${{ Cart::getTotal() }}</span>
                                 </div>
                             </th>
                         </tr>

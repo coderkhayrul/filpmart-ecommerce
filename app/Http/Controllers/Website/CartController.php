@@ -43,7 +43,6 @@ class CartController extends Controller
 
 
         $coupons = Coupon::where('coupon_status', 1)->get();
-        return $coupons;
         foreach ($coupons as $coupon) {
             if ($coupon->coupon_code == $request->coupon_code) {
                 if ($coupon->coupon_ending < date('Y-m-d', strtotime(Carbon::now()))) {
