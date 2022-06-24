@@ -155,17 +155,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control unicase-form-control text-input"
-                                        placeholder="You Coupon..">
-                                </div>
-                                <div class="clearfix pull-right">
-                                    <button type="submit" class="btn-upper btn btn-primary">APPLY COUPON</button>
-                                </div>
-                            </td>
-                        </tr>
+                        <form action="{{ route('cart.coupon.apply') }}" method="POST">
+                            @csrf
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <input name="coupon_code" type="text" class="form-control unicase-form-control text-input"
+                                            placeholder="You Coupon..">
+                                            <input name="user_id" type="hidden" value="@auth {{ auth()->user()->id }} @endauth">
+                                    </div>
+                                    <div class="clearfix pull-right">
+                                        <button type="submit" class="btn-upper btn btn-primary">APPLY COUPON</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+
                     </tbody><!-- /tbody -->
                 </table><!-- /table -->
             </div><!-- /.estimate-ship-tax -->

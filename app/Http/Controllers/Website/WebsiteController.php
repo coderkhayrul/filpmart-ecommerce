@@ -12,4 +12,8 @@ class WebsiteController extends Controller
     public function home(){
         return view('website.home');
     }
+
+    public function login(){
+        return view('website.login');
+    }
 }

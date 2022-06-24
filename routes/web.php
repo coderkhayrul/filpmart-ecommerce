@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
+Route::get('/user-login', [WebsiteController::class, 'login'])->name('website.login');
 
 // <<===== WISH LIST LIST ======>>
 Route::group(['prefix' => 'wishlist'], function() {
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/',[ CartController::class, 'index'])->name('cart.index');
     Route::get('/{slug}',[ CartController::class, 'store'])->name('cart.store');
     Route::get('/delete/{id}',[ CartController::class, 'destroy'])->name('cart.destroy');
+    // Coupon Apply
+    Route::post('/coupon/apply',[ CartController::class, 'coupon_apply'])->name('cart.coupon.apply');
 });
 
 
