@@ -82,6 +82,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
     // <<===== ROLE ROUTE LIST ======>>
     Route::get('/role', [AdminController::class, 'role_show'])->name('manage.role');
+    Route::get('/role-permission/{role_id}', [AdminController::class, 'role_edit'])->name('manage.role.edit');
+    Route::put('/role-permission/update/{role_id}', [AdminController::class, 'role_update'])->name('manage.role.update');
 
 
     // <<===== BASIC INFO ROUTE LIST ======>>

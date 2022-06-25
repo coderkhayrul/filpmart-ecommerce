@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
@@ -39,5 +41,24 @@ class AdminController extends Controller
     {
         $roles = Role::orderBy('id', 'ASC')->get();
         return view('admin.pages.roles.index', compact('roles'));
+    }
+
+    public function role_edit($role_id){
+        $role = Role::where('id',$role_id)->first();
+        $permissions = Permission::all();
+        return view('admin.pages.roles.edit', compact('role', 'permissions'));
+    }
+
+    public function role_update($role_id, Request $request){
+
+        $role = Role::findOrFail($role_id);
+        $role->syncPermissions($request->permission);
+        if ($role) {
+            Session::flash('success', 'Role Permission Updated Successfully');
+            return redirect()->route('manage.role');
+        } else {
+            Session::flash('error', 'Role Permission Failed');
+            return redirect('manage.role')->route('manage.role');
+        }
     }
 }

@@ -29,15 +29,23 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Permissions</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($roles as $role)
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <span style="font-size:15px;"
-                                              class="badge bg-primary">{{ $role->name }}</span>
+                                            class="badge bg-success">{{ $role->name }}</span>
+                                    </td>
+                                    <td>
+                                        @foreach ($role->permissions->pluck('name') as $permission)
+                                        <span style="font-size:15px;"
+                                            class="badge bg-primary">{{ $permission }}</span>
+                                        @endforeach
+
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group">
@@ -48,7 +56,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                 <li>
-                                                    <a href="#" class="dropdown-item"><i
+                                                    <a href="{{ route('manage.role.edit',$role->id) }}" class="dropdown-item"><i
                                                             class=" bx bx-edit-alt label-icon"></i>
                                                         Edit</a>
                                                 </li>
