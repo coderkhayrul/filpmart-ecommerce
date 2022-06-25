@@ -20,7 +20,13 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlists = Wishlist::where('wishlist_status', 1)->where('user_id', auth()->user()->id)->get();
+        if (Auth::check()) {
+            $auth_id = Auth::user()->id;
+        }else{
+            $auth_id = '';
+        }
+
+        $wishlists = Wishlist::where('wishlist_status', 1)->where('user_id', $auth_id)->get();
         return view('website.wishlist', compact('wishlists'));
     }
 
