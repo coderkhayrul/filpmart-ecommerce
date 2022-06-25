@@ -42,7 +42,7 @@
                                     </td>
                                     <td>
                                         @foreach ($role->permissions->pluck('name') as $permission)
-                                        <span style="font-size:15px;"
+                                        <span style="font-size:15px; padding: 2px 2px;"
                                             class="badge bg-primary">{{ $permission }}</span>
                                         @endforeach
 
@@ -89,35 +89,35 @@
         rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('custom-script')
-    <!-- Required datatable js -->
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{ asset('backend') }}/libs/jszip/jszip.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/pdfmake/build/pdfmake.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/pdfmake/build/vfs_fonts.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+{{--@section('custom-script')--}}
+{{--    <!-- Required datatable js -->--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>--}}
+{{--    <!-- Buttons examples -->--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>--}}
+{{--    <script src="{{ asset('backend') }}/libs/jszip/jszip.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/pdfmake/build/pdfmake.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/pdfmake/build/vfs_fonts.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.print.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>--}}
 
-    <!-- Responsive examples -->
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script
-        src="{{ asset('backend') }}/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+{{--    <!-- Responsive examples -->--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>--}}
+{{--    <script--}}
+{{--        src="{{ asset('backend') }}/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>--}}
 
-    <!-- Datatable init js -->
-    <script src="{{ asset('backend') }}/js/pages/datatables.init.js"></script>
-@endsection
+{{--    <!-- Datatable init js -->--}}
+{{--    <script src="{{ asset('backend') }}/js/pages/datatables.init.js"></script>--}}
+{{--@endsection--}}
