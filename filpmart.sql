@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 24, 2022 at 10:32 PM
+-- Generation Time: Jun 26, 2022 at 06:49 AM
 -- Server version: 8.0.29-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -347,7 +347,22 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (2, 'User Create', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
 (3, 'User Show', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
 (4, 'User Edit', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
-(5, 'User Delete', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37');
+(5, 'User Delete', 'web', '2022-06-24 15:01:37', '2022-06-24 15:01:37'),
+(6, 'Category Index', 'web', '2022-06-25 12:55:50', '2022-06-25 12:55:50'),
+(7, 'Category Create', 'web', '2022-06-25 12:55:50', '2022-06-25 12:55:50'),
+(8, 'Category Show', 'web', '2022-06-25 12:55:50', '2022-06-25 12:55:50'),
+(9, 'Category Edit', 'web', '2022-06-25 12:55:50', '2022-06-25 12:55:50'),
+(10, 'Category Delete', 'web', '2022-06-25 12:55:50', '2022-06-25 12:55:50'),
+(11, 'Product Index', 'web', '2022-06-25 13:00:50', '2022-06-25 13:00:50'),
+(12, 'Product Create', 'web', '2022-06-25 13:00:50', '2022-06-25 13:00:50'),
+(13, 'Product Show', 'web', '2022-06-25 13:00:50', '2022-06-25 13:00:50'),
+(14, 'Product Edit', 'web', '2022-06-25 13:00:50', '2022-06-25 13:00:50'),
+(15, 'Product Delete', 'web', '2022-06-25 13:00:50', '2022-06-25 13:00:50'),
+(16, 'Brand Index', 'web', '2022-06-25 13:00:57', '2022-06-25 13:00:57'),
+(17, 'Brand Create', 'web', '2022-06-25 13:00:57', '2022-06-25 13:00:57'),
+(18, 'Brand Show', 'web', '2022-06-25 13:00:57', '2022-06-25 13:00:57'),
+(19, 'Brand Edit', 'web', '2022-06-25 13:00:57', '2022-06-25 13:00:57'),
+(20, 'Brand Delete', 'web', '2022-06-25 13:00:57', '2022-06-25 13:00:57');
 
 -- --------------------------------------------------------
 
@@ -444,6 +459,52 @@ CREATE TABLE `role_has_permissions` (
   `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(20, 2),
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 3),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(14, 3),
+(16, 3),
+(17, 3),
+(18, 3),
+(19, 3),
+(1, 5),
+(6, 5),
+(11, 5),
+(16, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -512,7 +573,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `slug`, `status`, `address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Khayrul', 'admin@mail.com', '01835061968', 'khayrul', 1, NULL, NULL, '$2y$10$E/gK0AeBwxxFh8PPncrVUOfktjrfRYNrmiOMPmg55Ql5sDdtHnjXW', NULL, '2022-06-24 15:18:42', '2022-06-24 16:24:01'),
+(1, 'Khayrul', 'admin@mail.com', '01835061968', 'khayrul', 1, NULL, NULL, '$2y$10$E/gK0AeBwxxFh8PPncrVUOfktjrfRYNrmiOMPmg55Ql5sDdtHnjXW', NULL, '2022-06-24 15:18:42', '2022-06-25 02:06:18'),
 (2, 'Hasan', 'hasan@gmail.com', '01303132067', 'hasan', 1, NULL, NULL, '$2y$10$Q.W6rGZB341rSvazavI63.0oz.ADpLhf6k1vrwx1kFYnJDQSm3Asu', NULL, '2022-06-24 16:11:39', '2022-06-24 16:12:10');
 
 -- --------------------------------------------------------
@@ -536,7 +597,7 @@ CREATE TABLE `wishlists` (
 
 INSERT INTO `wishlists` (`wishlist_id`, `user_id`, `product_id`, `wishlist_status`, `created_at`, `updated_at`) VALUES
 (12, 1, 11, 1, '2022-06-24 14:08:00', '2022-06-24 14:08:00'),
-(13, 1, 10, 1, '2022-06-24 14:08:04', '2022-06-24 14:08:04');
+(15, 2, 10, 1, '2022-06-25 01:40:20', '2022-06-25 01:40:20');
 
 --
 -- Indexes for dumped tables
@@ -743,7 +804,7 @@ ALTER TABLE `partners`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -785,7 +846,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `wishlist_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `wishlist_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
