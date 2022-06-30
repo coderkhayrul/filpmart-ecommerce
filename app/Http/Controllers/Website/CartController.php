@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Product;
+use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
 use Cart;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use function Sodium\compare;
 
 class CartController extends Controller
 {
@@ -35,41 +38,43 @@ class CartController extends Controller
 
     public function destroy($id)
     {
-        Cart::remove($id);
+        $cart_remove = Cart::remove($id);
+        if ($cart_remove){
+            Cart::clearCartConditions();
+        }
         return redirect()->back();
     }
 
+//    COUPON APPLY
     public function coupon_apply(Request $request){
+        $coupon = Coupon::where('coupon_status', 1)->where('coupon_code', $request->coupon_code)->first();
 
-
-        $coupons = Coupon::where('coupon_status', 1)->get();
-        foreach ($coupons as $coupon) {
-            if ($coupon->coupon_code == $request->coupon_code) {
-                if ($coupon->coupon_ending < date('Y-m-d', strtotime(Carbon::now()))) {
-                    return "Coupon Expired";
-                }else{
-                    return "Coupon Active";
-                }
-            }else {
-                return "Coupon Not Found!";
+        if ($coupon){
+            if ($coupon->coupon_ending >= date('Y-m-d', strtotime(Carbon::now()))){
+                Cart::clearCartConditions();
+                $condition = new CartCondition(array(
+                    'name' => $coupon->coupon_title,
+                    'type' => 'coupon',
+                    'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
+                    'value' =>  -$coupon->coupon_amount,
+                    'attributes' => array(
+                        'user_id' => $request->user_id,
+                    )
+                ));
+                Cart::condition($condition);
+//                Get Cart Condition
+                $condition_data = Cart::getConditions();
+                return redirect()->back()->with('success', 'Coupon Code Applied Successfully',compact('condition_data'));
+            }else{
+                return 'Coupon Code Expired';
             }
+        }else{
+            return 'Coupon Code is not valid';
         }
-
-
-        // $coupon = Coupon::where('coupon_status', 1)->where('coupon_code', $request->coupon_code)->first();
-
-
-        // if ($coupon->coupon_ending < date('Y-m-d', strtotime(Carbon::now()))) {
-        //     return "Coupon Expired";
-        // }else{
-        //     return "Coupon Active";
-        // }
-
-        // @if (date('d-M-Y', strtotime(Carbon\Carbon::now())) <= date('d-M-Y', strtotime($data->coupon_exp_date)))
-        //                         <span class="badge badge-success">{{  date('d-M-Y', strtotime($data->coupon_exp_date)) }}</span>
-        //                         @else
-        //                         <span class="badge badge-danger">Coupon Expire</span>
-        //                         @endif
     }
-
+//    Coupon Remove
+    public  function coupon_remove(){
+        Cart::clearCartConditions();
+        return redirect()->back();
+    }
 }

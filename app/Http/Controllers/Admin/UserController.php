@@ -65,7 +65,6 @@ class UserController extends Controller
             'address' => $request->address,
             'status' => 1
         ]);
-
         if ($user) {
             Session::flash('success', 'User created successfully');
             return redirect()->back();

@@ -39,19 +39,20 @@ Route::post('/user-access', [WebsiteController::class, 'login_access'])->name('w
 Route::post('/user-register', [WebsiteController::class, 'register'])->name('website.register');
 
 // <<===== WISH LIST LIST ======>>
-Route::group(['prefix' => 'wishlist'], function () {
+Route::group(['prefix' => 'wishlist', 'middleware' => 'auth'], function () {
     Route::get('/', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('/{slug}', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::get('/delete/{slug}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 });
 
 // <<===== ADD TO CART LIST ======>>
-Route::group(['prefix' => 'cart'], function () {
+Route::group(['prefix' => 'cart','middleware' => 'auth'], function () {
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
     Route::get('/{slug}', [CartController::class, 'store'])->name('cart.store');
     Route::get('/delete/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     // Coupon Apply
     Route::post('/coupon/apply', [CartController::class, 'coupon_apply'])->name('cart.coupon.apply');
+    Route::get('/coupon/remove', [CartController::class, 'coupon_remove'])->name('cart.coupon.remove');
 });
 
 

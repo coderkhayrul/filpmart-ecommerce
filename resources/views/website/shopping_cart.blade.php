@@ -152,6 +152,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @php
+                        $couponcount = Cart::getConditions()->count();
+                        $coupon = Cart::getConditions()->first();
+                    @endphp
                         <form action="{{ route('cart.coupon.apply') }}" method="POST">
                             @csrf
                             <tr>
@@ -159,6 +163,7 @@
                                     <div class="form-group">
                                         <input name="coupon_code" type="text" class="form-control unicase-form-control text-input"
                                             placeholder="You Coupon..">
+                                        @if($couponcount > 0) <span class="text-danger">Coupon Code Apply Success <a href="{{ route('cart.coupon.remove') }}" title="cancel" class="icon text-danger"><i class="fa fa-times"></i></a> </span> @endif
                                             <input name="user_id" type="hidden" value="@auth {{ auth()->user()->id }} @endauth">
                                     </div>
                                     <div class="clearfix pull-right">
@@ -180,6 +185,11 @@
                                 <div class="cart-sub-total">
                                     Subtotal<span class="inner-left-md">${{ Cart::getSubTotal() }}</span>
                                 </div>
+                                @if($couponcount > 0)
+                                <div class="cart-sub-total">
+                                    Discount<span class="inner-left-md">$ {{ $coupon->getValue() }}</span>
+                                </div>
+                                @endif
                                 <div class="cart-grand-total">
                                     Grand Total<span class="inner-left-md">${{ Cart::getTotal() }}</span>
                                 </div>
