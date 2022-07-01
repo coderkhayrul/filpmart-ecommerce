@@ -52,7 +52,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <span class="badge badge-soft-primary">{{ $data->roles[0]->name }}</span>
+                                        <span class="badge badge-soft-primary">Role</span>
+                                    </td>
                                     <td>
                                         @if ($data->status == 1)
                                             <div class="badge badge-soft-success font-size-12">Active</div>
@@ -70,17 +71,17 @@
                                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                 <li>
                                                     <a href="{{ route('user.show',$data['slug']) }}"
-                                                       class="dropdown-item"><i
+                                                    class="dropdown-item"><i
                                                             class="bx bx-show-alt label-icon"></i> Show</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('user.edit',$data['slug']) }}"
-                                                       class="dropdown-item"><i
+                                                    class="dropdown-item"><i
                                                             class=" bx bx-edit-alt label-icon"></i> Edit</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('user.softdelete',$data['slug']) }}"
-                                                       class="dropdown-item"><i
+                                                    class="dropdown-item"><i
                                                             class=" bx bxs-trash-alt label-icon"></i> Delete</a>
                                                 </li>
                                                 <li class="">

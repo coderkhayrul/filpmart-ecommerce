@@ -37,7 +37,7 @@
                                         $count = 1;
                                     @endphp
                                     @foreach ($permissions as $permission)
-                                        @if(substr($permission->name,0,4) == "User")
+                                        @if(substr($permission->name,0,4) == "user")
                                             @if($count == 1)
                                                 <hr>
                                                 <div class="row-fluid">

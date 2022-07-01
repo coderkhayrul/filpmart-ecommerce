@@ -15,11 +15,11 @@ class UserPermissionSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['name' => 'User Index'],
-            ['name' => 'User Create'],
-            ['name' => 'User Show'],
-            ['name' => 'User Edit'],
-            ['name' => 'User Delete'],
+            ['name' => 'user index'],
+            ['name' => 'user create'],
+            ['name' => 'user show'],
+            ['name' => 'user edit'],
+            ['name' => 'user delete'],
         ];
         foreach ($users as $user) {
             Permission::create($user);
